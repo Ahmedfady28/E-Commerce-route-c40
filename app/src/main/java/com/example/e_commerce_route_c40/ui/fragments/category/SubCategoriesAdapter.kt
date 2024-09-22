@@ -30,13 +30,13 @@ class SubCategoriesAdapter @Inject constructor(
         position: Int
     ) {
         binding.apply {
-            irvSubCategoryCardImg.setImageResource(R.drawable.ic_launcher_foreground)
             irvSubCategoryTxt.text = item.name
             root.setOnClickListener {
                 onItemClickListener?.onItemClick(item,position)
             }
             Glide.with(binding.root.context)
                 .load(item.image)
+                .placeholder(R.drawable.img_coming_soon)
                 .into(irvSubCategoryCardImg)
         }
     }
