@@ -45,8 +45,9 @@
                 android:visibility="visible"
                 app:itemBackground="@drawable/nav_item_background"
                 app:itemIconTint="@color/nav_item_color"
-                app:labelVisibilityMode="unlabeled"
+                app:labelVisibilityMode="labeled"
                 app:menu="@menu/home_navigation_menu" />
+
         </com.google.android.material.card.MaterialCardView>
 
 

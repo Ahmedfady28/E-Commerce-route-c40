@@ -114,6 +114,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/user_password"
             android:layout_marginHorizontal="20dp"
+            app:passwordToggleEnabled="true"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
             app:showError = "@{vm.passwordError}"
             >

@@ -63,7 +63,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             btnCart.setOnClickListener {
                 // action to cart fragment
             }
-            rvOffers.setOnClickListener {
+            rvBrands.setOnClickListener {
                 // action to specific fragment
             }
             tvViewAllCategories.setOnClickListener {

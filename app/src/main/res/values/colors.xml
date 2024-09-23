@@ -9,8 +9,13 @@
     <color name="black2">#2F2929</color>
     <color name="blue3">#0973DD</color>
     <color name="green">#02B935</color>
-    <color name="transparent">#0000</color>
+
     <color name="lite_color">#99004182</color>
     <color name="gray">#A9A9A9</color>
     <color name="main_tv_color">#06004F</color>
+    <color name="default_icon_color">#8A8A8A</color>
+    <color name="selected_icon_color">#FF6200EE</color>
+    <color name="selected_item_color">#FFEBEE</color>
+    <color name="transparent">#00000000</color>
+
 </resources>
