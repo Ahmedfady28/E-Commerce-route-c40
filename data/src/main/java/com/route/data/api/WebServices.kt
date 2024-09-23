@@ -6,7 +6,6 @@ import com.route.data.api.model.response.BrandDto
 import com.route.data.api.model.response.CategoriesResponse
 import com.route.data.api.model.response.LoginRequest
 import com.route.data.api.model.response.LoginResponse
-import com.route.data.api.model.response.ProductDto
 import com.route.data.api.model.response.ProductsResponse
 import com.route.data.api.model.response.SignUpRequest
 import com.route.data.api.model.response.SignUpResponse
@@ -33,6 +32,7 @@ interface WebServices {
         @Query("category") categoryId: String? = null,
         @Query("brand") brandId: String? = null,
         @Query("keyword") keyword: String? = null,
+        @Query("sort") sortBy: String? = null,
     ): ProductsResponse
 
     @POST("api/v1/auth/signin")

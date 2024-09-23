@@ -9,6 +9,7 @@ interface ProductsOnlineDataSource {
         categoryId: String? = null,
         brandId: String? = null,
         keyword: String? = null,
+        sortBy: String? = null
     ): Flow<ApiResult<List<Product>?>>
 
 }

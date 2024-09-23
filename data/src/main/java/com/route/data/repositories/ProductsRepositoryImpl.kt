@@ -15,8 +15,9 @@ class ProductsRepositoryImpl @Inject constructor(
         categoryId: String?,
         brandId: String?,
         keyword: String?,
+        sortBy: String?
     ): Flow<ApiResult<List<Product>?>> {
         Log.e("ProductsRepositoryImpl categoryId", categoryId.toString())
-        return onlineDataSource.getProducts(categoryId, brandId, keyword)
+        return onlineDataSource.getProducts(categoryId, brandId, keyword, sortBy)
     }
 }
