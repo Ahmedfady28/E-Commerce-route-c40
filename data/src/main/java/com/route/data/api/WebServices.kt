@@ -2,6 +2,7 @@ package com.route.data.api
 
 import com.route.data.api.model.request.AddWishListRequest
 import com.route.data.api.model.response.BaseResponse
+import com.route.data.api.model.response.BrandDto
 import com.route.data.api.model.response.CategoriesResponse
 import com.route.data.api.model.response.LoginRequest
 import com.route.data.api.model.response.LoginResponse
@@ -50,5 +51,8 @@ interface WebServices {
 
     @POST("api/v1/wishlist")
     suspend fun addToWishList(@Body body:AddWishListRequest):BaseResponse<List<String>?>
+
+    @GET("/api/v1/brands")
+    suspend fun getBrands(): BaseResponse<List<BrandDto>>
 
 }
