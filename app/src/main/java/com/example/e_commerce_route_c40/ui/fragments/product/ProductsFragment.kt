@@ -46,7 +46,10 @@ class ProductsFragment : BaseFragment<FragmentProductBinding, ProductViewModel>(
     @SuppressLint("ClickableViewAccessibility")
     private fun initViews() {
         productsAdaptor.onFavoriteClickListener = ProductsAdaptor.OnItemClickListener { product, position ->
-            viewModel.addProductToWishList(product)
+            if (product?.isLiked == false)
+                viewModel.addProductToWishList(product)
+            else
+                viewModel.removeProductToWishList(product)
 
         }
         binding.rvProduct.adapter = productsAdaptor

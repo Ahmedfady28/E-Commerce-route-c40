@@ -9,5 +9,6 @@ interface ProductsRepository {
         categoryId: String? = null,
         brandId: String? = null,
         keyword: String? = null,
+        sortBy: String?
     ): Flow<ApiResult<List<Product>?>>
 }

@@ -1,6 +1,5 @@
 package com.route.data.repositories
 
-import com.route.data.dataSourcesContract.CategoriesOnlineDataSource
 import com.route.data.dataSourcesContract.WishlistOnlineDataSource
 import com.route.domain.model.ApiResult
 import com.route.domain.model.Product
@@ -17,5 +16,9 @@ class WishlistRepoImp @Inject constructor(
 
     override fun addToWishList(id: String?): Flow<ApiResult<List<String>?>> {
         return onlineDataSource.addToWishList(id)
+    }
+
+    override fun removeFromWishList(id: String): Flow<ApiResult<List<String>?>> {
+        return onlineDataSource.removeFromWishList(id)
     }
 }

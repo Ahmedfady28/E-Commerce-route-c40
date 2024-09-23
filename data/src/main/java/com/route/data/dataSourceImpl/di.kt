@@ -3,18 +3,19 @@ package com.route.data.dataSourceImpl
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import com.google.gson.Gson
-import com.route.data.dataStore.UserDataStore
 import com.route.data.dataSourcesContract.AuthOfflineDataSource
 import com.route.data.dataSourcesContract.AuthOnlineDataSource
 import com.route.data.dataSourcesContract.CategoriesOnlineDataSource
-import dagger.Binds
 import com.route.data.dataSourcesContract.ProductsOnlineDataSource
+import com.route.data.dataStore.UserDataStore
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
+import com.route.data.dataSourcesContract.BrandsOnlineDataSourse as BrandsOnlineDataSourse1
 
 
 @Module
@@ -22,7 +23,7 @@ import javax.inject.Singleton
 abstract class DataSourceBinder{
 
     @Binds
-    abstract fun bindOnlineDataSource(
+    abstract fun bindCategoriesOnlineDataSource(
         categoriesOnlineDataSourceImpl: CategoriesOnlineDataSourceImpl
     ): CategoriesOnlineDataSource
 
@@ -35,6 +36,11 @@ abstract class DataSourceBinder{
     abstract fun bindProductsDataSource(
         datasourceImpl: ProductsOnlineDataSourceImpl
     ): ProductsOnlineDataSource
+
+    @Binds
+    abstract fun bindBrandsDataSource(
+        datasourceImpl: BrandsOnlineDataSourseImpl
+    ): BrandsOnlineDataSourse1
 }
 
 @Module

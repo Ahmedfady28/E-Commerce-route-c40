@@ -1,4 +1,4 @@
-package com.example.e_commerce_route_c40.ui.activities.register
+package com.example.e_commerce_route_c40.ui.fragments.register
 
 import android.os.Bundle
 import android.view.View

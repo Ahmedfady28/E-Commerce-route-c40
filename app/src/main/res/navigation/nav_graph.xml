@@ -64,7 +64,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginScreen"
-        android:name="com.example.e_commerce_route_c40.ui.activities.login.LoginScreen"
+        android:name="com.example.e_commerce_route_c40.ui.fragments.login.LoginScreen"
         android:label="LoginScreen" >
         <action
             android:id="@+id/action_loginScreen_to_createAccount"
@@ -72,11 +72,11 @@
     </fragment>
     <fragment
         android:id="@+id/splashScreen"
-        android:name="com.example.e_commerce_route_c40.ui.activities.splash.SplashScreen"
+        android:name="com.example.e_commerce_route_c40.ui.fragments.splash.SplashScreen"
         android:label="SplashScreen" />
     <fragment
         android:id="@+id/createAccount"
-        android:name="com.example.e_commerce_route_c40.ui.activities.register.CreateAccount"
+        android:name="com.example.e_commerce_route_c40.ui.fragments.register.CreateAccount"
         android:label="CreateAccount" >
         <action
             android:id="@+id/action_createAccount_to_loginScreen"

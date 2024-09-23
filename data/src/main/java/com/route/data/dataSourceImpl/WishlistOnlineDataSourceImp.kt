@@ -27,4 +27,10 @@ class WishlistOnlineDataSourceImp @Inject constructor(
         }
     }
 
+    override fun removeFromWishList(id: String): Flow<ApiResult<List<String>?>> {
+        return executeApi {
+            webServices.removeFromWishList(id).data
+        }
+    }
+
 }

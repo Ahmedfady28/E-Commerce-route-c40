@@ -25,6 +25,16 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@color/main_color" />
 
+            <ImageView
+                android:id="@+id/ic_favorite_blue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/ic_favoriets_unselected"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/btn_favoriets"
                 style="@style/btn_favoriets_style"

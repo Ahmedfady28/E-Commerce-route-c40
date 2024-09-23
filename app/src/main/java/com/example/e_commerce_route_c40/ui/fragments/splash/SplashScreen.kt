@@ -1,26 +1,30 @@
-package com.example.e_commerce_route_c40.ui.activities.splash
+package com.example.e_commerce_route_c40.ui.fragments.splash
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.e_commerce_route_c40.R
 import com.example.e_commerce_route_c40.base.BaseFragment
-import com.example.e_commerce_route_c40.base.BaseViewModel
 import com.example.e_commerce_route_c40.databinding.SplashBinding
+import com.example.e_commerce_route_c40.ui.activities.MainActivity
+import com.example.e_commerce_route_c40.util.makeNavyBottomVisible
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SplashScreen : BaseFragment<SplashBinding,SplashViewModel>() {
-    private val _viewModel:SplashViewModel by viewModels()
+class SplashScreen : BaseFragment<SplashBinding, SplashViewModel>() {
+    private val _viewModel: SplashViewModel by viewModels()
     override fun initViewModel(): SplashViewModel {
         return _viewModel
     }
 
     override fun getLayoutId(): Int {
         return R.layout.splash
+    }
+
+    override fun onStart() {
+        super.onStart()
+        (activity as MainActivity).makeNavyBottomVisible(false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

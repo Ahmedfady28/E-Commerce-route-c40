@@ -5,9 +5,10 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import com.example.e_commerce_route_c40.R
 import com.example.e_commerce_route_c40.adapters.HomeCategoriesAdapter
-
-import com.example.e_commerce_route_c40.databinding.FragmentHomeBinding
 import com.example.e_commerce_route_c40.base.BaseFragment
+import com.example.e_commerce_route_c40.databinding.FragmentHomeBinding
+import com.example.e_commerce_route_c40.ui.activities.MainActivity
+import com.example.e_commerce_route_c40.util.makeNavyBottomVisible
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -39,6 +40,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     }
 
     private fun initViews() {
+        (activity as MainActivity).makeNavyBottomVisible(true)
         adapterCategories = HomeCategoriesAdapter()
 //        adapterHomeAppliance.setOncCartClick {
 //            // action add to cart
@@ -61,7 +63,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             btnCart.setOnClickListener {
                 // action to cart fragment
             }
-            rvOffers.setOnClickListener {
+            rvBrands.setOnClickListener {
                 // action to specific fragment
             }
             tvViewAllCategories.setOnClickListener {
