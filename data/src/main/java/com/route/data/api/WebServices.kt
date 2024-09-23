@@ -11,6 +11,7 @@ import com.route.data.api.model.response.SignUpRequest
 import com.route.data.api.model.response.SignUpResponse
 import com.route.data.api.model.response.WishListResponse
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
@@ -51,6 +52,11 @@ interface WebServices {
 
     @POST("api/v1/wishlist")
     suspend fun addToWishList(@Body body:AddWishListRequest):BaseResponse<List<String>?>
+
+    @DELETE("api/v1/wishlist/{id}")
+    suspend fun removeFromWishList(
+        @Path("id") id: String
+    ): BaseResponse<List<String>?>
 
     @GET("/api/v1/brands")
     suspend fun getBrands(): BaseResponse<List<BrandDto>>
