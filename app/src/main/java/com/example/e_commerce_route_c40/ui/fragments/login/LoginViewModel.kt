@@ -1,4 +1,4 @@
-package com.example.e_commerce_route_c40.ui.activities.login
+package com.example.e_commerce_route_c40.ui.fragments.login
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope

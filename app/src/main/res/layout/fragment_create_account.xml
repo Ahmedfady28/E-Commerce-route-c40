@@ -5,7 +5,7 @@
     <data>
         <variable
             name="createVM"
-            type="com.example.e_commerce_route_c40.ui.activities.register.CreateAccountViewModel" />
+            type="com.example.e_commerce_route_c40.ui.fragments.register.CreateAccountViewModel" />
     </data>
 
     <ScrollView
