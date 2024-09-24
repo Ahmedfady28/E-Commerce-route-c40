@@ -38,4 +38,7 @@
     <string name="please_enter_your_mobile_number">please enter your mobile number</string>
     <string name="please_enter_valid_name">please enter valid name</string>
     <string name="please_enter_valid_mobile_number">please enter valid mobile number</string>
+    <string name="home">Home</string>
+    <string name="category">Category</string>
+    <string name="favorite">Favorite</string>
 </resources>
