@@ -35,7 +35,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
     private fun observeLiveData() {
         viewModel.categoriesLiveData.observe(viewLifecycleOwner){categories->
-            adapterCategories.changeData(categories)
+            if (categories != null) {
+                adapterCategories.changeData(categories)
+            }
         }
     }
 

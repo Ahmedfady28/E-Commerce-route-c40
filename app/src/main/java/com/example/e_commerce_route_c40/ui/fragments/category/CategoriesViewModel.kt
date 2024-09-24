@@ -3,7 +3,6 @@ package com.example.e_commerce_route_c40.ui.fragments.category
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.e_commerce_route_c40.base.BaseViewModel
-import com.route.domain.model.ApiResult
 import com.route.domain.model.Category
 import com.route.domain.model.SubCategory
 import com.route.domain.usecase.category.GetCategoriesUseCase
@@ -24,13 +23,8 @@ class CategoriesViewModel @Inject constructor(
         viewModelScope.launch {
             getCategoriesUseCase.invoke()
                 .collect{result->
-                    when(result){
-                        is ApiResult.Failure -> handleError(result.throwable)
-                        is ApiResult.Loading ->  handleLoading(result)
-                        is ApiResult.Success ->{
-                            categoriesLiveData.postValue(result.data)
-
-                        }
+                    handleCollectScope(result) { dataList ->
+                        categoriesLiveData.postValue(dataList)
                     }
                 }
         }
@@ -40,13 +34,8 @@ class CategoriesViewModel @Inject constructor(
         viewModelScope.launch {
             getSubCategoriesUseCase.invoke(categoryId)
                 .collect{result->
-                    when(result){
-                        is ApiResult.Failure -> handleError(result.throwable)
-                        is ApiResult.Loading ->  handleLoading(result)
-                        is ApiResult.Success ->{
-                            subCategoriesLiveData.postValue(result.data)
-
-                        }
+                    handleCollectScope(result) { dataList ->
+                        subCategoriesLiveData.postValue(dataList)
                     }
                 }
         }

@@ -6,8 +6,6 @@ import com.example.e_commerce_route_c40.R
 import com.route.domain.cusomException.ConnectionError
 import com.route.domain.cusomException.ServerError
 import com.route.domain.model.ApiResult
-import java.io.IOException
-import java.net.UnknownHostException
 
 open class BaseViewModel:ViewModel() {
     val uiMessage = MutableLiveData<UIMessage>()
@@ -50,6 +48,7 @@ open class BaseViewModel:ViewModel() {
             showLoading = false)
         )
     }
+
     fun showLoading(messageId:Int?=null,
                     message:String?=null){
         uiMessage.postValue(UIMessage(
@@ -58,6 +57,7 @@ open class BaseViewModel:ViewModel() {
             message = message
         ))
     }
+
     fun handleLoading(loading:ApiResult.Loading<*>){
         if(loading.isLoading){
             showLoading(R.string.loading)
@@ -66,5 +66,21 @@ open class BaseViewModel:ViewModel() {
         hideLoading()
 
     }
+    fun <T> handleCollectScope(
+        result: ApiResult<T?>,
+        onRetry: (() -> Unit)? = null,
+        onSuccess: (T?) -> Unit
+    ) {
+        when (result) {
+            is ApiResult.Failure -> handleError(result.throwable) {
+                if (onRetry != null) {
+                    onRetry()
+                }
+            }
 
+            is ApiResult.Loading -> handleLoading(result)
+            is ApiResult.Success -> onSuccess(result.data)
+        }
+
+    }
 }

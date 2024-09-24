@@ -54,10 +54,10 @@ class ProductsFragment : BaseFragment<FragmentProductBinding, ProductViewModel>(
         }
         binding.rvProduct.adapter = productsAdaptor
 
-        binding.etSearch.setOnEditorActionListener { v, actionId, event ->
+        binding.etSearch.setOnEditorActionListener { view, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
 
-                val query = v.text.toString().trim()
+                val query = view.text.toString().trim()
                 viewModel.getProductsByKey(query)
 
                 return@setOnEditorActionListener true

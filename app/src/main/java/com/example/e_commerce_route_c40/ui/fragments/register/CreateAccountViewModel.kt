@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.e_commerce_route_c40.R
 import com.example.e_commerce_route_c40.base.BaseViewModel
 import com.example.e_commerce_route_c40.util.ValidationUtils
-import com.route.domain.model.ApiResult
 import com.route.domain.model.AuthData
 import com.route.domain.usecase.auth.GetSignUpCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -46,12 +45,13 @@ class CreateAccountViewModel @Inject constructor(
             signUpUseCase.invoke(email, password, userName, mobileNum)
                 .flowOn(Dispatchers.IO)
                 .collect{result->
-                    when(result){
-                        is ApiResult.Failure -> handleError(result.throwable){
-                            signUp(email,password,userName,mobileNum)
+                    handleCollectScope(result, {
+                        // OnRetry login again
+                        signUp(email, password, userName, mobileNum)
                         }
-                        is ApiResult.Loading -> handleLoading(result)
-                        is ApiResult.Success -> signUpLiveData.postValue(result.data)
+                    ) { dataList -> // onSuccess
+                        signUpLiveData.postValue(dataList)
+
                     }
                 }
         }

@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.e_commerce_route_c40.R
 import com.example.e_commerce_route_c40.base.BaseViewModel
 import com.example.e_commerce_route_c40.util.ValidationUtils
-import com.route.domain.model.ApiResult
 import com.route.domain.model.AuthData
 import com.route.domain.usecase.auth.GetLoginUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -40,14 +39,11 @@ class LoginViewModel @Inject constructor(
                 loginUseCase.invoke(email, password)
                     .flowOn(Dispatchers.IO)
                     .collect{result->
-                        when(result){
-                            is ApiResult.Failure -> handleError(result.throwable){
-                                login(email,password)
-                            }
-                            is ApiResult.Loading ->  handleLoading(result)
-                            is ApiResult.Success ->{
-                                loginLiveData.postValue(result.data)
-                            }
+                        handleCollectScope(result,
+                            // OnRetry login again
+                            { login(email, password) }
+                        ) { data ->
+                            loginLiveData.postValue(data)
                         }
                     }
             }

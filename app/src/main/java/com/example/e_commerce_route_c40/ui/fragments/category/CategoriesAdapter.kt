@@ -1,7 +1,6 @@
 package com.example.e_commerce_route_c40.ui.fragments.category
 
 
-import android.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,11 +8,8 @@ import com.example.e_commerce_route_c40.R
 import com.example.e_commerce_route_c40.base.BaseAdapter
 import com.example.e_commerce_route_c40.databinding.ItemCategoryInCategoriesBinding
 import com.route.domain.model.Category
-import javax.inject.Inject
 
-class CategoriesAdapter @Inject constructor(
-    alertDialog: AlertDialog
-): BaseAdapter<Category, ItemCategoryInCategoriesBinding>(alertDialog) {
+class CategoriesAdapter : BaseAdapter<Category, ItemCategoryInCategoriesBinding>() {
 
     private var selectedPosition = 0
 

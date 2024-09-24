@@ -1,18 +1,15 @@
 package com.example.e_commerce_route_c40.ui.fragments.product
 
-import android.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.example.e_commerce_route_c40.R
 import com.example.e_commerce_route_c40.base.BaseAdapter
 import com.example.e_commerce_route_c40.databinding.ItemProductBinding
-import com.route.domain.model.Category
 import com.route.domain.model.Product
-import javax.inject.Inject
 
-class ProductsAdaptor @Inject constructor(alertDialog: AlertDialog) :
-    BaseAdapter<Product, ItemProductBinding>(alertDialog) {
+class ProductsAdaptor :
+    BaseAdapter<Product, ItemProductBinding>() {
 
 
     override fun getBinding(parent: ViewGroup, viewType: Int): ItemProductBinding {
