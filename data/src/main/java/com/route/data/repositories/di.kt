@@ -33,5 +33,4 @@ abstract class RepositoriesBinder{
         brandsRepositoryImpl: BrandsRepositoryImpl
     ): BrandsRepository
 
-
 }

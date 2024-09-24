@@ -60,6 +60,9 @@
             app:destination="@id/categoryFragment"
 
             />
+        <action
+            android:id="@+id/action_productsFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
 
     </fragment>
     <fragment
@@ -85,5 +88,16 @@
         <action
             android:id="@+id/action_createAccount_to_loginScreen"
             app:destination="@id/loginScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/productDetailsFragment"
+        android:name="com.example.e_commerce_route_c40.ui.fragments.SpecificProduct.ProductDetailsFragment"
+        android:label="fragment_product_details"
+        tools:layout="@layout/fragment_product_details" >
+        <argument
+            android:name="id"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="null" />
     </fragment>
 </navigation>

@@ -12,4 +12,8 @@ interface ProductsOnlineDataSource {
         sortBy: String? = null
     ): Flow<ApiResult<List<Product>?>>
 
+    suspend fun getSpecificProduct(
+        productId: String
+    ): Flow<ApiResult<Product?>>
+
 }

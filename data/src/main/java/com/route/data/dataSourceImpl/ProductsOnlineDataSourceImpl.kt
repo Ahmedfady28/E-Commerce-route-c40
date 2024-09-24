@@ -8,7 +8,8 @@ import com.route.domain.model.Product
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class ProductsOnlineDataSourceImpl @Inject constructor(private val webServices: WebServices) :
+class ProductsOnlineDataSourceImpl @Inject constructor(
+    private val webServices: WebServices) :
     ProductsOnlineDataSource {
 
     override suspend fun getProducts(
@@ -23,6 +24,13 @@ class ProductsOnlineDataSourceImpl @Inject constructor(private val webServices: 
             response.data?.map { productDto ->
                 productDto?.toProduct() ?: Product()
             }
+        }
+    }
+
+    override suspend fun getSpecificProduct(productId: String): Flow<ApiResult<Product?>> {
+        val response = webServices.getSpecificProduct(productId)
+        return executeApi {
+            response.data?.toProduct()
         }
     }
 }

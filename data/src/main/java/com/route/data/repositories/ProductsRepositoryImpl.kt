@@ -20,4 +20,8 @@ class ProductsRepositoryImpl @Inject constructor(
         Log.e("ProductsRepositoryImpl categoryId", categoryId.toString())
         return onlineDataSource.getProducts(categoryId, brandId, keyword, sortBy)
     }
+
+    override suspend fun getSpecificProduct(productId: String): Flow<ApiResult<Product?>> {
+        return onlineDataSource.getSpecificProduct(productId)
+    }
 }

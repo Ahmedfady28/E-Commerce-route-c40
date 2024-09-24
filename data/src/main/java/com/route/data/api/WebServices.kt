@@ -6,6 +6,7 @@ import com.route.data.api.model.response.BrandDto
 import com.route.data.api.model.response.CategoriesResponse
 import com.route.data.api.model.response.LoginRequest
 import com.route.data.api.model.response.LoginResponse
+import com.route.data.api.model.response.ProductDto
 import com.route.data.api.model.response.ProductsResponse
 import com.route.data.api.model.response.SignUpRequest
 import com.route.data.api.model.response.SignUpResponse
@@ -60,5 +61,10 @@ interface WebServices {
 
     @GET("/api/v1/brands")
     suspend fun getBrands(): BaseResponse<List<BrandDto>>
+
+    @GET("api/v1/products/{id}")
+    suspend fun getSpecificProduct(
+        @Path("id") id: String
+    ): BaseResponse<ProductDto>
 
 }

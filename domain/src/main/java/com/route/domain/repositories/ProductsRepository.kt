@@ -9,6 +9,10 @@ interface ProductsRepository {
         categoryId: String? = null,
         brandId: String? = null,
         keyword: String? = null,
-        sortBy: String?
+        sortBy: String? = null,
     ): Flow<ApiResult<List<Product>?>>
+
+    suspend fun getSpecificProduct(
+        productId:String
+    ): Flow<ApiResult<Product?>>
 }

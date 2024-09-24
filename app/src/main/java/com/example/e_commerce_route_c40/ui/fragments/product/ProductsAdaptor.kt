@@ -7,7 +7,6 @@ import com.bumptech.glide.Glide
 import com.example.e_commerce_route_c40.R
 import com.example.e_commerce_route_c40.base.BaseAdapter
 import com.example.e_commerce_route_c40.databinding.ItemProductBinding
-import com.route.domain.model.Category
 import com.route.domain.model.Product
 import javax.inject.Inject
 

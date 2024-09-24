@@ -35,5 +35,4 @@ class CreateAccount : BaseFragment<FragmentCreateAccountBinding, CreateAccountVi
         findNavController(this).navigate(action)
     }
 
-
 }
