@@ -41,11 +41,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/main_color"
-                app:itemIconSize="24dp"
+                android:layout_alignParentBottom="true"
                 android:visibility="visible"
-                app:itemBackground="@drawable/nav_item_background"
                 app:itemIconTint="@color/nav_item_color"
-                app:labelVisibilityMode="labeled"
                 app:menu="@menu/home_navigation_menu" />
 
         </com.google.android.material.card.MaterialCardView>
