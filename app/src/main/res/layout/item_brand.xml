@@ -14,7 +14,7 @@
         android:layout_marginEnd="20dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/iv_categories"
+            android:id="@+id/iv_brand"
             android:layout_width="100dp"
             android:layout_height="100dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -23,11 +23,11 @@
             tools:src="@color/black" />
 
         <TextView
-            android:id="@+id/tv_categories"
+            android:id="@+id/tv_brands"
             style="@style/tv_category_style"
-            app:layout_constraintEnd_toEndOf="@id/iv_categories"
-            app:layout_constraintStart_toStartOf="@id/iv_categories"
-            app:layout_constraintTop_toBottomOf="@id/iv_categories"
+            app:layout_constraintEnd_toEndOf="@id/iv_brand"
+            app:layout_constraintStart_toStartOf="@id/iv_brand"
+            app:layout_constraintTop_toBottomOf="@id/iv_brand"
             tools:text="Nike" />
 
 

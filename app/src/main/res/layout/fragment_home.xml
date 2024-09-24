@@ -140,11 +140,11 @@
                     tools:listitem="@layout/item_category" />
 
                 <TextView
-                    android:id="@+id/tv_home_appliance"
+                    android:id="@+id/tv_most_seller"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Most Saller"
+                    android:text="Most Seller"
                     android:textColor="@color/main_tv_color"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -157,9 +157,9 @@
                     android:orientation="horizontal"
                     android:scrollbars="none"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                    app:layout_constraintEnd_toStartOf="@id/tv_home_appliance"
-                    app:layout_constraintStart_toEndOf="@id/tv_home_appliance"
-                    app:layout_constraintTop_toBottomOf="@id/tv_home_appliance"
+                    app:layout_constraintEnd_toStartOf="@id/tv_most_seller"
+                    app:layout_constraintStart_toEndOf="@id/tv_most_seller"
+                    app:layout_constraintTop_toBottomOf="@id/tv_most_seller"
                     tools:listitem="@layout/item_home_appliance" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

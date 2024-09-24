@@ -8,7 +8,8 @@ import com.example.e_commerce_route_c40.databinding.ItemCategoryBinding
 import com.route.domain.model.Category
 
 
-class HomeCategoriesAdapter : BaseAdapter<Category, ItemCategoryBinding>() {
+class HomeCategoriesAdapter : BaseAdapter<Category, ItemCategoryBinding>()
+{
     var onItemClickListener: OnItemClickListener? = null
 
     override fun getBinding(parent: ViewGroup, viewType: Int): ItemCategoryBinding =

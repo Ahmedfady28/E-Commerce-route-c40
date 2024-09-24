@@ -3,6 +3,7 @@ package com.example.e_commerce_route_c40.ui.fragments.home
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import com.example.e_commerce_route_c40.R
 import com.example.e_commerce_route_c40.adapters.HomeCategoriesAdapter
 import com.example.e_commerce_route_c40.base.BaseFragment
@@ -10,13 +11,18 @@ import com.example.e_commerce_route_c40.databinding.FragmentHomeBinding
 import com.example.e_commerce_route_c40.ui.activities.MainActivity
 import com.example.e_commerce_route_c40.util.makeNavyBottomVisible
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
-//  //  private lateinit var offersAdapter: OffersAdapter
-    private lateinit var adapterCategories: HomeCategoriesAdapter
-//    private lateinit var adapterHomeAppliance: AdapterHomeAppliance
+
+    @Inject
+    lateinit var adapterCategories: HomeCategoriesAdapter
+
+
+    @Inject
+    lateinit var adapterBrands: BrandAdapter
 
     val _viewModel :HomeViewModel by viewModels()
 
@@ -31,7 +37,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         initViews()
         observeLiveData()
         viewModel.getCategoryList()
+        viewModel.getBrandsList()
     }
+
 
     private fun observeLiveData() {
         viewModel.categoriesLiveData.observe(viewLifecycleOwner){categories->
@@ -39,26 +47,37 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                 adapterCategories.changeData(categories)
             }
         }
+        viewModel.brandsLiveData.observe(viewLifecycleOwner) { brands ->
+            if (brands != null)
+            {
+                adapterBrands.changeData(brands)
+            }
+        }
     }
 
     private fun initViews() {
         (activity as MainActivity).makeNavyBottomVisible(true)
         adapterCategories = HomeCategoriesAdapter()
-//        adapterHomeAppliance.setOncCartClick {
-//            // action add to cart
-//        }
-//        adapterHomeAppliance.setOnFavClick {
-//            //action add to favoriets
-//        }
-//        adapterHomeAppliance.setOnProductClick {
-//            // action to specific product fragment
-//        }
-//
-//        adapterCategories.setOnClick {
-//            // action to specific category fragment
-//        }
+
+        adapterCategories.onItemClickListener =
+                HomeCategoriesAdapter.OnItemClickListener { category, _ ->
+                    val action =
+                            HomeFragmentDirections.actionHomeFragmentToCategoryFragment(category)
+                    Navigation.findNavController(binding.root).navigate(action)
+
+                }
+
+
+
         binding.apply {
             rvCategories.adapter = adapterCategories
+            rvBrands.adapter = adapterBrands
+
+            tvViewAllCategories.setOnClickListener {
+                val action = HomeFragmentDirections.actionHomeFragmentToCategoryFragment()
+                Navigation.findNavController(binding.root).navigate(action)
+            }
+
             etSearch.setOnClickListener {
                 // Handle search button click
             }
@@ -68,16 +87,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             rvBrands.setOnClickListener {
                 // action to specific fragment
             }
-            tvViewAllCategories.setOnClickListener {
-                // action to all categories fragment
 
-            }
             rvCategories.setOnClickListener {
                 // action to specific category fragment
             }
-            rvHomeAppliance.setOnClickListener {
-                // action to specific appliance fragment
-            }
+
 
         }
 
