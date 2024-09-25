@@ -28,7 +28,7 @@ class ProductsFragment : BaseFragment<FragmentProductBinding, ProductViewModel>(
         super.onViewCreated(view, savedInstanceState)
         initViews()
         observeLivedata()
-        viewModel.getProductsByCategory()
+        viewModel.getProducts()
     }
 
     private fun observeLivedata() {

@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/iv_product"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
@@ -25,7 +25,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@color/main_color" />
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ic_favorite_blue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -37,6 +37,8 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/btn_favoriets"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 style="@style/btn_favoriets_style"
                 android:src="@drawable/ic_favoriets_unselected"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -53,8 +55,11 @@
             <TextView
                 android:id="@+id/tv_review"
                 style="@style/tv_review_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
                 android:text="@string/review"
-                app:layout_constraintBottom_toTopOf="@id/tv_price_type"
+                app:layout_constraintBottom_toTopOf="@id/tv_price"
                 app:layout_constraintStart_toStartOf="@id/tv_product_name"
                 app:layout_constraintTop_toBottomOf="@id/tv_product_name" />
 
@@ -69,7 +74,7 @@
                 app:layout_constraintTop_toTopOf="@id/tv_review"
                 tools:text="(4.8)" />
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/rating_star"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -80,26 +85,18 @@
                 app:layout_constraintStart_toEndOf="@id/tv_review_count"
                 app:layout_constraintTop_toTopOf="@id/tv_review_count" />
 
-            <TextView
-                android:id="@+id/tv_price_type"
-                style="@style/tv_review_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/egp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@id/tv_review"
-                app:layout_constraintTop_toBottomOf="@id/tv_review" />
 
             <TextView
                 android:id="@+id/tv_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@id/tv_price_type"
-                app:layout_constraintStart_toEndOf="@id/tv_price_type"
-                app:layout_constraintTop_toTopOf="@id/tv_price_type"
-                tools:text="9000" />
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tv_review"
+                app:layout_constraintTop_toBottomOf="@id/tv_review"
+                tools:text="9000 $" />
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/btn_add_cart"
                 android:layout_width="24dp"
                 android:layout_height="24dp"

@@ -3,6 +3,7 @@ package com.example.e_commerce_route_c40.ui
 import com.example.e_commerce_route_c40.adapters.HomeCategoriesAdapter
 import com.example.e_commerce_route_c40.ui.fragments.category.CategoriesAdapter
 import com.example.e_commerce_route_c40.ui.fragments.category.SubCategoriesAdapter
+import com.example.e_commerce_route_c40.ui.fragments.home.AdapterMostSeller
 import com.example.e_commerce_route_c40.ui.fragments.home.BrandAdapter
 import com.example.e_commerce_route_c40.ui.fragments.product.ProductsAdaptor
 import dagger.Module
@@ -34,4 +35,8 @@ class Di {
     @Provides
     @FragmentScoped
     fun provideBrandAdapter(): BrandAdapter = BrandAdapter()
+
+    @Provides
+    @FragmentScoped
+    fun provideProductMostSellerAdapter(): AdapterMostSeller = AdapterMostSeller()
 }

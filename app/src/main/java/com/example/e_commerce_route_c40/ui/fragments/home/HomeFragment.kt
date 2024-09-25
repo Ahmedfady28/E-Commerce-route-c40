@@ -20,15 +20,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     @Inject
     lateinit var adapterCategories: HomeCategoriesAdapter
 
+    @Inject
+    lateinit var adapterMostSeller: AdapterMostSeller
 
     @Inject
     lateinit var adapterBrands: BrandAdapter
 
     val _viewModel :HomeViewModel by viewModels()
 
-    override fun initViewModel(): HomeViewModel {
-        return _viewModel
-    }
+    override fun initViewModel(): HomeViewModel = _viewModel
 
     override fun getLayoutId(): Int = R.layout.fragment_home
 
@@ -38,26 +38,26 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         observeLiveData()
         viewModel.getCategoryList()
         viewModel.getBrandsList()
+        viewModel.getMostSellerList()
     }
 
 
     private fun observeLiveData() {
-        viewModel.categoriesLiveData.observe(viewLifecycleOwner){categories->
-            if (categories != null) {
-                adapterCategories.changeData(categories)
-            }
+        viewModel.categoriesLiveData.observe(viewLifecycleOwner) { categories ->
+            if (categories != null) adapterCategories.changeData(categories)
+
         }
         viewModel.brandsLiveData.observe(viewLifecycleOwner) { brands ->
-            if (brands != null)
-            {
-                adapterBrands.changeData(brands)
-            }
+            if (brands != null) adapterBrands.changeData(brands)
+        }
+
+        viewModel.productsLiveData.observe(viewLifecycleOwner) { products ->
+            if (products != null) adapterMostSeller.changeData(products)
         }
     }
 
     private fun initViews() {
         (activity as MainActivity).makeNavyBottomVisible(true)
-        adapterCategories = HomeCategoriesAdapter()
 
         adapterCategories.onItemClickListener =
                 HomeCategoriesAdapter.OnItemClickListener { category, _ ->
@@ -67,30 +67,30 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
                 }
 
+        adapterBrands.onBrandClickListener =
+            BrandAdapter.OnItemClickListener { brand, _ ->
+                val action =
+                    HomeFragmentDirections.actionHomeFragmentToProductsFragment(brand = brand)
+                Navigation.findNavController(binding.root).navigate(action)
+
+            }
+
 
 
         binding.apply {
             rvCategories.adapter = adapterCategories
             rvBrands.adapter = adapterBrands
+            rvHomeAppliance.adapter = adapterMostSeller
 
             tvViewAllCategories.setOnClickListener {
                 val action = HomeFragmentDirections.actionHomeFragmentToCategoryFragment()
                 Navigation.findNavController(binding.root).navigate(action)
             }
-
-            etSearch.setOnClickListener {
-                // Handle search button click
-            }
-            btnCart.setOnClickListener {
-                // action to cart fragment
-            }
-            rvBrands.setOnClickListener {
-                // action to specific fragment
+            tvViewAllBrands.setOnClickListener {
+                val action = HomeFragmentDirections.actionHomeFragmentToProductsFragment()
+                Navigation.findNavController(binding.root).navigate(action)
             }
 
-            rvCategories.setOnClickListener {
-                // action to specific category fragment
-            }
 
 
         }

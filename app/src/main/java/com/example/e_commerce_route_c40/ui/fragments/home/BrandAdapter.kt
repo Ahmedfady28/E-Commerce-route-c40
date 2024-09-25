@@ -11,7 +11,7 @@ import com.route.domain.model.Brand
 
 class BrandAdapter : BaseAdapter<Brand, ItemBrandBinding>()
 {
-
+    var onBrandClickListener: OnItemClickListener? = null
 
     override fun getBinding(parent: ViewGroup, viewType: Int): ItemBrandBinding =
             ItemBrandBinding.inflate(
@@ -22,14 +22,22 @@ class BrandAdapter : BaseAdapter<Brand, ItemBrandBinding>()
     override fun bindData(binding: ItemBrandBinding, item: Brand, position: Int)
     {
         binding.apply {
-            Glide.with(binding.root.context)
+            Glide.with(root.context)
                 .load(item.image)
                 .into(ivBrand)
             tvBrands.text = item.name
 
+            root.setOnClickListener {
+                onBrandClickListener?.onItemClick(item, position)
+            }
+
 
         }
 
+    }
+
+    fun interface OnItemClickListener {
+        fun onItemClick(brand: Brand?, position: Int)
     }
 
 }

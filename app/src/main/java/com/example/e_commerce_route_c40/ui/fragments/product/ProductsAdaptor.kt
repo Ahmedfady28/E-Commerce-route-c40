@@ -40,6 +40,7 @@ class ProductsAdaptor :
     }
 
     var onFavoriteClickListener : OnItemClickListener? = null
+
     fun interface OnItemClickListener {
         fun onItemClick(product: Product?, position: Int)
     }

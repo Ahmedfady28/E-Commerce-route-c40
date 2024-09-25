@@ -1,10 +1,13 @@
 package com.example.e_commerce_route_c40.ui.fragments.product
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import com.example.e_commerce_route_c40.base.BaseViewModel
 import com.route.data.api.interceptor.IODispatcher
+import com.route.domain.model.Brand
 import com.route.domain.model.Product
+import com.route.domain.model.SubCategory
 import com.route.domain.usecase.product.GetProductsUseCase
 import com.route.domain.usecase.wishList.AddProductToWishListUseCase
 import com.route.domain.usecase.wishList.RemoveProductFromWishListUseCase
@@ -25,11 +28,12 @@ class ProductViewModel @Inject constructor(
 
     val productsLiveData = MutableLiveData<List<Product>?>()
     val productWishListUpdatePosition = MutableLiveData<Int>()
-//    private val subCategory: SubCategory? = savedStateHandle["subCategory"]
+    private val subCategory: SubCategory? = savedStateHandle["subCategory"]
+    private val brand: Brand? = savedStateHandle["brand"]
 
-    fun getProductsByCategory() {
+    private fun getProductsByCategory() {
         launch {
-            productsUseCase.invoke() //categoryId = subCategory?.id
+            productsUseCase.invoke(categoryId = subCategory?.id)
                 .collect { res ->
                     handleCollectScope(res) { dataList ->
                         productsLiveData.postValue(dataList)
@@ -39,9 +43,47 @@ class ProductViewModel @Inject constructor(
 
     }
 
+    private fun getAllProducts() {
+        launch {
+            productsUseCase.invoke()
+                .collect { res ->
+                    handleCollectScope(res) { dataList ->
+                        productsLiveData.postValue(dataList)
+                    }
+                }
+        }
+    }
+
+    fun getProducts() {
+        Log.d("ssdd", brand?.id.toString())
+        Log.d("ssdd", subCategory?.id.toString())
+        if (brand == null) {//&& subCategory== null
+            getAllProducts()
+            return
+        }
+//        if(subCategory != null) {
+//            getProductsByCategory()
+//            return
+//        }
+        if (brand != null) {
+            getProductsByBrand(brand)
+            return
+        }
+    }
+
     fun getProductsByKey(key: String) {
         launch {
             productsUseCase.invoke(keyword = key)
+                .collect { res ->
+                    handleCollectScope(res) { dataList ->
+                        productsLiveData.postValue(dataList)
+                    }
+                }
+        }
+    }
+    private fun getProductsByBrand(brand: Brand) {
+        launch {
+            productsUseCase.invoke(brandId = brand.id)
                 .collect { res ->
                     handleCollectScope(res) { dataList ->
                         productsLiveData.postValue(dataList)
