@@ -37,15 +37,26 @@ class ProductsAdaptor :
         binding.imgFavoriteProduct.setOnClickListener {
             onFavoriteClickListener?.onItemClick(item,position)
         }
+        binding.imgAddToCard.setOnClickListener {
+            onAddClickListener?.onItemClick(item, position)
+        }
         binding.root.setOnClickListener {
             onProductClickListener?.onItemClick(item, position)
         }
     }
 
+
     var onFavoriteClickListener : OnItemClickListener? = null
     var onProductClickListener: OnItemClickListener? = null
 
+    var onAddClickListener: OnAddedClickListener? = null
+
     fun interface OnItemClickListener {
+        fun onItemClick(product: Product?, position: Int)
+    }
+
+    fun interface OnAddedClickListener
+    {
         fun onItemClick(product: Product?, position: Int)
     }
 }

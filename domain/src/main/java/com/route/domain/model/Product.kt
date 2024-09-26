@@ -21,5 +21,7 @@ data class Product(
 	val brand: Brand? = null,
 	val slug: String? = null,
 	val updatedAt: String? = null,
-	var isLiked:Boolean = false
+    var isLiked: Boolean = false,
+    var isAdded: Boolean = false,
+    val count: Int? = null
 ) : Parcelable

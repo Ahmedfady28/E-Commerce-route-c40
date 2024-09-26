@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.e_commerce_route_c40.R
 import com.example.e_commerce_route_c40.base.BaseFragment
 import com.example.e_commerce_route_c40.databinding.FragmentProductBinding
+import com.example.e_commerce_route_c40.ui.fragments.cart.CartAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -20,6 +21,7 @@ class ProductsFragment : BaseFragment<FragmentProductBinding, ProductViewModel>(
 
     @Inject
     lateinit var productsAdaptor: ProductsAdaptor
+
 
     override fun initViewModel()    : ProductViewModel = _viewModel
 
@@ -42,6 +44,8 @@ class ProductsFragment : BaseFragment<FragmentProductBinding, ProductViewModel>(
         viewModel.productWishListUpdatePosition.observe(viewLifecycleOwner){pos->
             productsAdaptor.notifyItemChanged(pos)
         }
+
+
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -62,6 +66,20 @@ class ProductsFragment : BaseFragment<FragmentProductBinding, ProductViewModel>(
                 findNavController().navigate(act)
             }
         }
+
+        productsAdaptor.onAddClickListener =
+                ProductsAdaptor.OnAddedClickListener { product, position ->
+                    if (product?.isLiked == false)
+                        viewModel.addProductToCart(product)
+                    else
+                    {
+
+                    }
+
+                }
+
+
+
         binding.rvProduct.adapter = productsAdaptor
 
         binding.etSearch.setOnEditorActionListener { view, actionId, event ->

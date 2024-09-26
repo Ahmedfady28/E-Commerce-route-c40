@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.example.e_commerce_route_c40.R
 import com.example.e_commerce_route_c40.adapters.HomeCategoriesAdapter
 import com.example.e_commerce_route_c40.base.BaseFragment
@@ -110,6 +111,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             }
             tvViewAllBrands.setOnClickListener {
                 val action = HomeFragmentDirections.actionHomeFragmentToProductsFragment()
+                Navigation.findNavController(binding.root).navigate(action)
+            }
+            btnCart.setOnClickListener {
+
+                val action = HomeFragmentDirections.actionHomeFragmentToCartFragment()
                 Navigation.findNavController(binding.root).navigate(action)
             }
 

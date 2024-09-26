@@ -1,6 +1,7 @@
 package com.example.e_commerce_route_c40.ui
 
 import com.example.e_commerce_route_c40.adapters.HomeCategoriesAdapter
+import com.example.e_commerce_route_c40.ui.fragments.cart.CartAdapter
 import com.example.e_commerce_route_c40.ui.fragments.category.CategoriesAdapter
 import com.example.e_commerce_route_c40.ui.fragments.category.SubCategoriesAdapter
 import com.example.e_commerce_route_c40.ui.fragments.home.AdapterMostSeller
@@ -39,4 +40,8 @@ class Di {
     @Provides
     @FragmentScoped
     fun provideProductMostSellerAdapter(): AdapterMostSeller = AdapterMostSeller()
+
+//    @Provides
+//    @FragmentScoped
+//    fun provideCArtAdaptor(): CartAdapter = CartAdapter()
 }

@@ -8,6 +8,7 @@ import com.route.data.api.interceptor.IODispatcher
 import com.route.domain.model.Brand
 import com.route.domain.model.Product
 import com.route.domain.model.SubCategory
+import com.route.domain.usecase.cart.AddProductToCartUseCase
 import com.route.domain.usecase.product.GetProductsUseCase
 import com.route.domain.usecase.wishList.AddProductToWishListUseCase
 import com.route.domain.usecase.wishList.RemoveProductFromWishListUseCase
@@ -22,6 +23,7 @@ class ProductViewModel @Inject constructor(
     private val productsUseCase: GetProductsUseCase,
     private val addToWishListUseCase: AddProductToWishListUseCase,
     private val removeProductFromWishListUseCase: RemoveProductFromWishListUseCase,
+    private val addToCartUseCase: AddProductToCartUseCase,
     @IODispatcher override val coroutineContext: CoroutineContext,
     savedStateHandle: SavedStateHandle,
 ) : BaseViewModel(),CoroutineScope {
@@ -96,6 +98,18 @@ class ProductViewModel @Inject constructor(
         if(product==null)return
         launch {
             addToWishListUseCase.invoke(product).collect { result ->
+                handleCollectScope(result) {
+                    updateProductState(product)
+                }
+            }
+        }
+    }
+
+    fun addProductToCart(product: Product?)
+    {
+        if (product == null) return
+        launch {
+            addToCartUseCase.invoke(product).collect { result ->
                 handleCollectScope(result) {
                     updateProductState(product)
                 }

@@ -1,9 +1,13 @@
 package com.route.data.api
 
+import com.route.data.api.model.request.AddCartRequest
 import com.route.data.api.model.request.AddWishListRequest
 import com.route.data.api.model.response.BaseResponse
 import com.route.data.api.model.response.BrandDto
+import com.route.data.api.model.response.AddToCartResponse
+import com.route.data.api.model.response.CartResponse
 import com.route.data.api.model.response.CategoriesResponse
+import com.route.data.api.model.response.Data
 import com.route.data.api.model.response.LoginRequest
 import com.route.data.api.model.response.LoginResponse
 import com.route.data.api.model.response.ProductDto
@@ -11,6 +15,8 @@ import com.route.data.api.model.response.ProductsResponse
 import com.route.data.api.model.response.SignUpRequest
 import com.route.data.api.model.response.SignUpResponse
 import com.route.data.api.model.response.WishListResponse
+import com.route.domain.model.ApiResult
+import kotlinx.coroutines.flow.Flow
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -59,6 +65,15 @@ interface WebServices {
         @Path("id") id: String
     ): BaseResponse<List<String>?>
 
+    @GET("api/v1/cart")
+    suspend fun getCart(): CartResponse
+
+    @POST("api/v1/cart")
+    suspend fun addToCart(
+        @Body body: AddCartRequest
+    ): BaseResponse<List<String>?>
+
+
     @GET("/api/v1/brands")
     suspend fun getBrands(): BaseResponse<List<BrandDto>>
 
@@ -66,5 +81,6 @@ interface WebServices {
     suspend fun getSpecificProduct(
         @Path("id") id: String
     ): BaseResponse<ProductDto>
+
 
 }

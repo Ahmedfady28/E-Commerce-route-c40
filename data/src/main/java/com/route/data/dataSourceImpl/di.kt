@@ -5,6 +5,7 @@ import androidx.datastore.preferences.core.Preferences
 import com.google.gson.Gson
 import com.route.data.dataSourcesContract.AuthOfflineDataSource
 import com.route.data.dataSourcesContract.AuthOnlineDataSource
+import com.route.data.dataSourcesContract.CartOnlineDataSource
 import com.route.data.dataSourcesContract.CategoriesOnlineDataSource
 import com.route.data.dataSourcesContract.ProductsOnlineDataSource
 import com.route.data.dataSourcesContract.WishlistOnlineDataSource
@@ -47,6 +48,12 @@ abstract class DataSourceBinder{
     abstract fun bindOnlineDataSource(
         wishlistOnlineDataSourceImpl: WishlistOnlineDataSourceImp
     ): WishlistOnlineDataSource
+
+    @Binds
+    abstract fun bindCartOnlineDataSource(
+        cartOnlineDataSourceImp: CartOnlineDataSourceImp
+    ): CartOnlineDataSource
+
 
 }
 

@@ -21,7 +21,8 @@ class FavoriteProductAdapter(
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val product = products[position]
         holder.binding.apply {
-            textViewTitle.text = product.title
+
+        textViewTitle.text = product.title
             textViewSubtitle.text = product.description
             textViewNewPrice.text = "EGP ${product.price}"
             Glide.with(root.context)
