@@ -35,15 +35,6 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/btn_favoriets"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/btn_favoriets_style"
-                android:src="@drawable/ic_favoriets_unselected"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
             <TextView
                 android:id="@+id/tv_product_name"
                 style="@style/product_name_style"

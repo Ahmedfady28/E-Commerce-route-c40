@@ -6,5 +6,5 @@ import javax.inject.Inject
 class GetSpecificProductUseCase @Inject constructor(
     private val productsRepository: ProductsRepository
 ){
-    suspend fun invoke(productId:String) = productsRepository.getSpecificProduct(productId)
+    fun invoke(productId: String) = productsRepository.getSpecificProduct(productId)
 }

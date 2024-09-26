@@ -12,24 +12,24 @@ class ProductsOnlineDataSourceImpl @Inject constructor(
     private val webServices: WebServices) :
     ProductsOnlineDataSource {
 
-    override suspend fun getProducts(
+    override fun getProducts(
         categoryId: String?,
         brandId: String?,
         keyword: String?,
         sortBy: String?
     ): Flow<ApiResult<List<Product>?>> {
 
-        val response = webServices.getProducts(categoryId, brandId, keyword, sortBy)
         return executeApi {
+            val response = webServices.getProducts(categoryId, brandId, keyword, sortBy)
             response.data?.map { productDto ->
                 productDto?.toProduct() ?: Product()
             }
         }
     }
 
-    override suspend fun getSpecificProduct(productId: String): Flow<ApiResult<Product?>> {
-        val response = webServices.getSpecificProduct(productId)
+    override fun getSpecificProduct(productId: String): Flow<ApiResult<Product?>> {
         return executeApi {
+            val response = webServices.getSpecificProduct(productId)
             response.data?.toProduct()
         }
     }

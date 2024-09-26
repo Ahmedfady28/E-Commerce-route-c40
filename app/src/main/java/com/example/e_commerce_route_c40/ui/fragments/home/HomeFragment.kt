@@ -26,7 +26,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     @Inject
     lateinit var adapterBrands: BrandAdapter
 
-    val _viewModel :HomeViewModel by viewModels()
+    private val _viewModel: HomeViewModel by viewModels()
 
     override fun initViewModel(): HomeViewModel = _viewModel
 
@@ -54,6 +54,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         viewModel.productsLiveData.observe(viewLifecycleOwner) { products ->
             if (products != null) adapterMostSeller.changeData(products)
         }
+        viewModel.productWishListUpdatePosition.observe(viewLifecycleOwner) { pos ->
+            adapterMostSeller.notifyItemChanged(pos)
+        }
     }
 
     private fun initViews() {
@@ -71,6 +74,25 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             BrandAdapter.OnItemClickListener { brand, _ ->
                 val action =
                     HomeFragmentDirections.actionHomeFragmentToProductsFragment(brand = brand)
+                Navigation.findNavController(binding.root).navigate(action)
+
+            }
+        adapterMostSeller.onFavoriteClickListener =
+            AdapterMostSeller.OnItemClickListener { product, _ ->
+                if (product?.isLiked == false)
+                    viewModel.addProductToWishList(product)
+                else
+                    viewModel.removeProductToWishList(product)
+
+            }
+
+
+        adapterMostSeller.onProductClickListener =
+            AdapterMostSeller.OnItemClickListener { product, _ ->
+                val action =
+                    HomeFragmentDirections.actionHomeFragmentToProductDetailsFragment(
+                        id = product?.id ?: ""
+                    )
                 Navigation.findNavController(binding.root).navigate(action)
 
             }

@@ -1,4 +1,4 @@
-package com.example.e_commerce_route_c40.ui.fragments.SpecificProduct
+package com.example.e_commerce_route_c40.ui.fragments.productDetails
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
@@ -7,23 +7,24 @@ import com.example.e_commerce_route_c40.base.BaseViewModel
 import com.route.domain.model.ApiResult
 import com.route.domain.model.Product
 import com.route.domain.usecase.product.GetSpecificProductUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class SpecificProductViewModel @Inject constructor(
+@HiltViewModel
+class ProductDetailsViewModel @Inject constructor(
     private val getSpecificProductUseCase: GetSpecificProductUseCase,
-    savedStateHandle: SavedStateHandle
+    savedStateHandle: SavedStateHandle,
 ): BaseViewModel() {
 
     val productLiveData = MutableLiveData<Product?>()
-    val productId = savedStateHandle.get<String>("id")
+    private val productId: String = savedStateHandle["id"] ?: ""
 
     fun getSpecificProduct(){
         viewModelScope.launch(Dispatchers.IO) {
-            productId?.let {
-                getSpecificProductUseCase.invoke(productId = it)
+            getSpecificProductUseCase.invoke(productId = productId)
                     .flowOn(Dispatchers.IO)
                     .collect {result->
                         when(result){
@@ -37,4 +38,3 @@ class SpecificProductViewModel @Inject constructor(
             }
         }
     }
-}

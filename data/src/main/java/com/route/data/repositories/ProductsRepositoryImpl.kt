@@ -11,7 +11,7 @@ import javax.inject.Inject
 class ProductsRepositoryImpl @Inject constructor(
     private val onlineDataSource: ProductsOnlineDataSource
 ) : ProductsRepository {
-    override suspend fun getProducts(
+    override fun getProducts(
         categoryId: String?,
         brandId: String?,
         keyword: String?,
@@ -21,7 +21,7 @@ class ProductsRepositoryImpl @Inject constructor(
         return onlineDataSource.getProducts(categoryId, brandId, keyword, sortBy)
     }
 
-    override suspend fun getSpecificProduct(productId: String): Flow<ApiResult<Product?>> {
+    override fun getSpecificProduct(productId: String): Flow<ApiResult<Product?>> {
         return onlineDataSource.getSpecificProduct(productId)
     }
 }

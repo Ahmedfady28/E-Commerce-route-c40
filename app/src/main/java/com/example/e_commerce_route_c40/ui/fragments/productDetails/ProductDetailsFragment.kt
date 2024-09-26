@@ -1,22 +1,20 @@
-package com.example.e_commerce_route_c40.ui.fragments.SpecificProduct
+package com.example.e_commerce_route_c40.ui.fragments.productDetails
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.viewModels
 import com.example.e_commerce_route_c40.R
 import com.example.e_commerce_route_c40.base.BaseFragment
 import com.example.e_commerce_route_c40.databinding.FragmentProductDetailsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-class ProductDetailsFragment : BaseFragment<FragmentProductDetailsBinding, SpecificProductViewModel>() {
+@AndroidEntryPoint
+class ProductDetailsFragment :
+    BaseFragment<FragmentProductDetailsBinding, ProductDetailsViewModel>() {
 
-    private val _viewModel: SpecificProductViewModel by viewModels ()
+    private val _viewModel: ProductDetailsViewModel by viewModels()
 
-    override fun initViewModel(): SpecificProductViewModel {
-        return  _viewModel
-    }
+    override fun initViewModel(): ProductDetailsViewModel = _viewModel
 
     override fun getLayoutId(): Int = R.layout.fragment_product_details
 

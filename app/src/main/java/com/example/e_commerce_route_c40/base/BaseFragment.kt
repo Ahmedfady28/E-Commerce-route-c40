@@ -3,6 +3,7 @@ package com.example.e_commerce_route_c40.base
 import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -47,6 +48,7 @@ abstract class BaseFragment<VB:ViewBinding,
             getLayoutId(),
             container,
             false)
+        Log.d("ghj", binding.toString())
         return binding.root
     }
 

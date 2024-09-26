@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.e_commerce_route_c40.R
 import com.example.e_commerce_route_c40.base.BaseFragment
 import com.example.e_commerce_route_c40.databinding.FragmentProductBinding
@@ -51,6 +52,15 @@ class ProductsFragment : BaseFragment<FragmentProductBinding, ProductViewModel>(
             else
                 viewModel.removeProductToWishList(product)
 
+        }
+
+        productsAdaptor.onProductClickListener = ProductsAdaptor.OnItemClickListener { product, _ ->
+            product.let {
+                val act = ProductsFragmentDirections.actionProductsFragmentToProductDetailsFragment(
+                    it?.id ?: ""
+                )
+                findNavController().navigate(act)
+            }
         }
         binding.rvProduct.adapter = productsAdaptor
 

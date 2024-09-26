@@ -9,6 +9,8 @@ import com.route.domain.model.Product
 import com.route.domain.usecase.brand.GetBrandsUseCase
 import com.route.domain.usecase.category.GetCategoriesUseCase
 import com.route.domain.usecase.product.GetProductsUseCase
+import com.route.domain.usecase.wishList.AddProductToWishListUseCase
+import com.route.domain.usecase.wishList.RemoveProductFromWishListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flowOn
@@ -19,24 +21,29 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val getCategoriesUseCase: GetCategoriesUseCase,
     private val getBrandsUseCase: GetBrandsUseCase,
-    private val getProductsUseCase: GetProductsUseCase
+    private val getProductsUseCase: GetProductsUseCase,
+    private val addToWishListUseCase: AddProductToWishListUseCase,
+    private val removeProductFromWishListUseCase: RemoveProductFromWishListUseCase
 ) : BaseViewModel() {
     val categoriesLiveData = MutableLiveData<List<Category>?>()
     val brandsLiveData = MutableLiveData<List<Brand>?>()
     val productsLiveData = MutableLiveData<List<Product>?>()
-    val keyOfMostSeller: String = "-sold"
+    private val keyOfMostSeller: String = "-sold"
+
+    val productWishListUpdatePosition = MutableLiveData<Int>()
+
     fun getCategoryList() {
-            viewModelScope.launch (Dispatchers.IO){
-                getCategoriesUseCase.invoke()
-                    .flowOn(Dispatchers.IO)
-                    .collect { result ->
-                        handleCollectScope(result) { dataList ->
-                            categoriesLiveData.postValue(dataList)
-                        }
+        viewModelScope.launch(Dispatchers.IO) {
+            getCategoriesUseCase.invoke()
+                .flowOn(Dispatchers.IO)
+                .collect { result ->
+                    handleCollectScope(result) { dataList ->
+                        categoriesLiveData.postValue(dataList)
                     }
+                }
 
 
-            }
+        }
 
     }
 
@@ -70,4 +77,36 @@ class HomeViewModel @Inject constructor(
 
     }
 
+
+    fun addProductToWishList(product: Product?) {
+        if (product == null) return
+        viewModelScope.launch(Dispatchers.IO) {
+            addToWishListUseCase.invoke(product).collect { result ->
+                handleCollectScope(result) {
+                    updateProductState(product)
+                }
+            }
+        }
+    }
+
+    private fun updateProductState(product: Product) {
+        val pos = productsLiveData.value?.indexOf(product) ?: -1
+        if (pos != -1) {
+            product.isLiked = !product.isLiked
+            productWishListUpdatePosition.postValue(pos)
+        }
+    }
+
+    fun removeProductToWishList(product: Product?) {
+        if (product == null) return
+        viewModelScope.launch(Dispatchers.IO) {
+            removeProductFromWishListUseCase.invoke(product.id!!)
+                .collect { result ->
+                    handleCollectScope(result) {
+                        updateProductState(product)
+                    }
+                }
+        }
+
+    }
 }

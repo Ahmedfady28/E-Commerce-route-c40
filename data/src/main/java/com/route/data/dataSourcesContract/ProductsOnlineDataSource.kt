@@ -5,14 +5,14 @@ import com.route.domain.model.Product
 import kotlinx.coroutines.flow.Flow
 
 interface ProductsOnlineDataSource {
-    suspend fun getProducts(
+    fun getProducts(
         categoryId: String? = null,
         brandId: String? = null,
         keyword: String? = null,
         sortBy: String? = null
     ): Flow<ApiResult<List<Product>?>>
 
-    suspend fun getSpecificProduct(
+    fun getSpecificProduct(
         productId: String
     ): Flow<ApiResult<Product?>>
 
