@@ -7,398 +7,404 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.fragments.productDetails.ProductDetailsFragment">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/ProductImage"
-            android:layout_width="398dp"
-            android:layout_height="250dp"
-            tools:src="@drawable/img"
-            android:scaleType="fitXY"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <ImageView
-            android:id="@+id/ic_favorite_blue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="26dp"
-            android:src="@drawable/ic_favorite_blue"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/Tv_Title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="18dp"
-            android:textColor="#06004F"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@id/ProductImage"
-            app:layout_constraintTop_toBottomOf="@id/ProductImage"
-            tools:text="Nike Air Jordon" />
-
-        <TextView
-            android:id="@+id/Tv_Price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:layout_marginEnd="16dp"
-            android:textColor="@color/blue"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@id/ProductImage"
-            app:layout_constraintTop_toBottomOf="@id/ProductImage"
-            tools:text="EGP 3,500" />
-
-        <TextView
-            android:id="@+id/Tv_How_Many_Sold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="18dp"
-            android:fontFamily="@font/poppins_medium"
-            android:textColor="#06004F"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="@id/ProductImage"
-            app:layout_constraintTop_toBottomOf="@id/Tv_Title"
-            tools:text="3,230 Sold" />
-
-        <ImageView
-            android:id="@+id/star_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="19dp"
-            android:layout_marginEnd="16dp"
-            android:src="@drawable/baseline_star_24"
-            app:layout_constraintStart_toEndOf="@id/Tv_Title"
-            app:layout_constraintTop_toBottomOf="@id/Tv_Title" />
-
-        <TextView
-            android:id="@+id/Tv_Rating"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:fontFamily="@font/poppins_light"
-            android:text="4.8(7,500)"
-            android:textColor="@color/blue"
-            android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@id/star_icon"
-            app:layout_constraintTop_toTopOf="@id/star_icon" />
-
-        <Button
-            android:id="@+id/plus_sub"
-            android:layout_width="130dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="14dp"
-            app:layout_constraintEnd_toEndOf="@id/Tv_Price"
-            app:layout_constraintTop_toBottomOf="@id/Tv_Price" />
-
-        <ImageButton
-            android:id="@+id/plus_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="16dp"
-            android:backgroundTint="@color/blue2"
-            android:src="@drawable/__icon__plus_circle_"
-            app:layout_constraintEnd_toEndOf="@id/plus_sub"
-            app:layout_constraintTop_toTopOf="@id/plus_sub" />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:textSize="22sp"
-            app:layout_constraintEnd_toStartOf="@id/plus_button"
-            app:layout_constraintStart_toEndOf="@id/Sub_Button"
-            app:layout_constraintTop_toBottomOf="@id/plus_sub"
-            app:layout_constraintTop_toTopOf="@id/plus_sub"
-            tools:text="1" />
-
-        <ImageButton
-            android:id="@+id/Sub_Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            android:backgroundTint="@color/blue2"
-            android:src="@drawable/__icon__subtract_circle_minus_remove_"
-            app:layout_constraintStart_toStartOf="@id/plus_sub"
-            app:layout_constraintTop_toTopOf="@id/plus_sub" />
-
-        <TextView
-            android:id="@+id/Tv_Description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="18dp"
-            android:text="@string/description"
-            android:textColor="#06004F"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@id/ProductImage"
-            app:layout_constraintTop_toBottomOf="@id/Tv_How_Many_Sold" />
-
-        <TextView
-            android:id="@+id/Tv_Description_Text"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="18dp"
-            android:layout_marginEnd="16dp"
-            android:fontFamily="@font/poppins_light"
-            android:maxLines="2"
-            android:textColor="#9906004F"
-            android:textSize="14sp"
-            android:visibility="visible"
-            app:layout_constraintEnd_toEndOf="@id/plus_sub"
-            app:layout_constraintStart_toStartOf="@id/Tv_Description"
-            app:layout_constraintTop_toBottomOf="@id/Tv_Description"
-            tools:text="@tools:sample/lorem/random" />
+            android:layout_height="match_parent"
+            tools:context=".ui.fragments.productDetails.ProductDetailsFragment">
 
-        <TextView
-            android:id="@+id/Tv_Read_More"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:text="@string/read_more"
-            android:textColor="@color/blue"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@id/Tv_Description_Text"
-            app:layout_constraintEnd_toEndOf="@id/Tv_Description_Text" />
+            <ImageView
+                android:id="@+id/ProductImage"
+                android:layout_width="398dp"
+                android:layout_height="250dp"
+                android:scaleType="fitXY"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/img" />
 
-        <TextView
-            android:id="@+id/Tv_Size"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="18dp"
-            android:text="Size"
-            android:textColor="#06004F"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@id/ProductImage"
-            app:layout_constraintTop_toBottomOf="@id/Tv_Description_Text" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/Size_Button_1"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            app:cardCornerRadius="18dp"
-            app:layout_constraintStart_toStartOf="@id/Tv_Size"
-            app:layout_constraintTop_toBottomOf="@id/Tv_Size">
+            <ImageView
+                android:id="@+id/ic_favorite_blue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="26dp"
+                android:src="@drawable/ic_favorite_blue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
+                android:id="@+id/Tv_Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="18dp"
+                android:textColor="#06004F"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/ProductImage"
+                app:layout_constraintTop_toBottomOf="@id/ProductImage"
+                tools:text="Nike Air Jordon" />
+
+            <TextView
+                android:id="@+id/Tv_Price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="16dp"
                 android:textColor="@color/blue"
-                android:textSize="25sp"
-                tools:text="38" />
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/Size_Button_2"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            app:cardCornerRadius="18dp"
-            app:layout_constraintStart_toEndOf="@id/Size_Button_1"
-            app:layout_constraintTop_toBottomOf="@id/Tv_Size">
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/ProductImage"
+                app:layout_constraintTop_toBottomOf="@id/ProductImage"
+                tools:text="EGP 3,500" />
 
             <TextView
+                android:id="@+id/Tv_How_Many_Sold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="18dp"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="#06004F"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@id/ProductImage"
+                app:layout_constraintTop_toBottomOf="@id/Tv_Title"
+                tools:text="3,230 Sold" />
+
+            <ImageView
+                android:id="@+id/star_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="19dp"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/baseline_star_24"
+                app:layout_constraintStart_toEndOf="@id/Tv_Title"
+                app:layout_constraintTop_toBottomOf="@id/Tv_Title" />
+
+            <TextView
+                android:id="@+id/Tv_Rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/poppins_light"
+                android:text="4.8(7,500)"
+                android:textColor="@color/blue"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@id/star_icon"
+                app:layout_constraintTop_toTopOf="@id/star_icon" />
+
+            <Button
+                android:id="@+id/plus_sub"
+                android:layout_width="130dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="14dp"
+                app:layout_constraintEnd_toEndOf="@id/Tv_Price"
+                app:layout_constraintTop_toBottomOf="@id/Tv_Price" />
+
+            <ImageButton
+                android:id="@+id/plus_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="@color/blue2"
+                android:src="@drawable/__icon__plus_circle_"
+                app:layout_constraintEnd_toEndOf="@id/plus_sub"
+                app:layout_constraintTop_toTopOf="@id/plus_sub" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                app:layout_constraintBottom_toBottomOf="@+id/plus_sub"
+                app:layout_constraintEnd_toStartOf="@id/plus_button"
+                app:layout_constraintStart_toEndOf="@id/Sub_Button"
+                app:layout_constraintTop_toBottomOf="@id/plus_sub"
+                app:layout_constraintTop_toTopOf="@id/plus_sub"
+                tools:text="1" />
+
+            <ImageButton
+                android:id="@+id/Sub_Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:backgroundTint="@color/blue2"
+                android:src="@drawable/__icon__subtract_circle_minus_remove_"
+                app:layout_constraintStart_toStartOf="@id/plus_sub"
+                app:layout_constraintTop_toTopOf="@id/plus_sub" />
+
+            <TextView
+                android:id="@+id/Tv_Description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="18dp"
+                android:text="@string/description"
+                android:textColor="#06004F"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/ProductImage"
+                app:layout_constraintTop_toBottomOf="@id/Tv_How_Many_Sold" />
+
+            <TextView
+                android:id="@+id/Tv_Description_Text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textColor="@color/blue"
-                android:textSize="25sp"
-                tools:text="39" />
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/Size_Button_3"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            app:cardCornerRadius="18dp"
-            app:layout_constraintStart_toEndOf="@id/Size_Button_2"
-            app:layout_constraintTop_toBottomOf="@id/Tv_Size">
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/poppins_light"
+                android:maxLines="2"
+                android:textColor="#9906004F"
+                android:textSize="14sp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="@id/plus_sub"
+                app:layout_constraintStart_toStartOf="@id/Tv_Description"
+                app:layout_constraintTop_toBottomOf="@id/Tv_Description"
+                tools:text="@tools:sample/lorem/random" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/Tv_Read_More"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:layout_gravity="end"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="@string/read_more"
                 android:textColor="@color/blue"
-                android:textSize="25sp"
-                tools:text="40" />
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/Size_Button_4"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            app:cardCornerRadius="18dp"
-            app:layout_constraintStart_toEndOf="@id/Size_Button_3"
-            app:layout_constraintTop_toBottomOf="@id/Tv_Size">
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/Tv_Description_Text"
+                app:layout_constraintEnd_toEndOf="@id/Tv_Description_Text" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/Tv_Size"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textColor="@color/blue"
-                android:textSize="25sp"
-                tools:text="41" />
-        </androidx.cardview.widget.CardView>
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="18dp"
+                android:text="Size"
+                android:textColor="#06004F"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/ProductImage"
+                app:layout_constraintTop_toBottomOf="@id/Tv_Description_Text" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/Size_Button_5"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            app:cardCornerRadius="18dp"
-            app:layout_constraintStart_toEndOf="@id/Size_Button_4"
-            app:layout_constraintTop_toBottomOf="@id/Tv_Size">
+            <androidx.cardview.widget.CardView
+                android:id="@+id/Size_Button_1"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                app:cardCornerRadius="18dp"
+                app:layout_constraintStart_toStartOf="@id/Tv_Size"
+                app:layout_constraintTop_toBottomOf="@id/Tv_Size">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textColor="@color/blue"
+                    android:textSize="25sp"
+                    tools:text="38" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/Size_Button_2"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                app:cardCornerRadius="18dp"
+                app:layout_constraintStart_toEndOf="@id/Size_Button_1"
+                app:layout_constraintTop_toBottomOf="@id/Tv_Size">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/blue"
+                    android:textSize="25sp"
+                    tools:text="39" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/Size_Button_3"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                app:cardCornerRadius="18dp"
+                app:layout_constraintStart_toEndOf="@id/Size_Button_2"
+                app:layout_constraintTop_toBottomOf="@id/Tv_Size">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/blue"
+                    android:textSize="25sp"
+                    tools:text="40" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/Size_Button_4"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                app:cardCornerRadius="18dp"
+                app:layout_constraintStart_toEndOf="@id/Size_Button_3"
+                app:layout_constraintTop_toBottomOf="@id/Tv_Size">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/blue"
+                    android:textSize="25sp"
+                    tools:text="41" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/Size_Button_5"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                app:cardCornerRadius="18dp"
+                app:layout_constraintStart_toEndOf="@id/Size_Button_4"
+                app:layout_constraintTop_toBottomOf="@id/Tv_Size">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textColor="@color/blue"
+                    android:textSize="25sp"
+                    tools:text="42" />
+            </androidx.cardview.widget.CardView>
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
+                android:id="@+id/Tv_Color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="18dp"
+                android:text="Color"
+                android:textColor="#06004F"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/ProductImage"
+                app:layout_constraintTop_toBottomOf="@id/Size_Button_1" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/Color_Button_Black"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:backgroundTint="@color/black2"
+                app:cardCornerRadius="18dp"
+                app:layout_constraintStart_toStartOf="@id/Tv_Color"
+                app:layout_constraintTop_toBottomOf="@id/Tv_Color"></androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/Color_Button_Red"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:backgroundTint="@color/red"
+                app:cardCornerRadius="18dp"
+                app:layout_constraintStart_toEndOf="@id/Color_Button_Black"
+                app:layout_constraintTop_toBottomOf="@id/Tv_Color"></androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/Color_Button_Blue"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:backgroundTint="@color/blue3"
+                app:cardCornerRadius="18dp"
+                app:layout_constraintStart_toEndOf="@id/Color_Button_Red"
+                app:layout_constraintTop_toBottomOf="@id/Tv_Color"></androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/Color_Button_Green"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:backgroundTint="@color/green"
+                app:cardCornerRadius="18dp"
+                app:layout_constraintStart_toEndOf="@id/Color_Button_Blue"
+                app:layout_constraintTop_toBottomOf="@id/Tv_Color"></androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/Color_Button_Rose"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:backgroundTint="#FF645A"
+                app:cardCornerRadius="18dp"
+                app:layout_constraintStart_toEndOf="@id/Color_Button_Green"
+                app:layout_constraintTop_toBottomOf="@id/Tv_Color"></androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/Tv_Total_Price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/poppins_light"
+                android:text="Total Price"
+                android:textColor="#9906004F"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/ProductImage"
+                app:layout_constraintTop_toBottomOf="@id/Color_Button_Black" />
+
+            <TextView
+                android:id="@+id/Tv_Price_Total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="16dp"
                 android:textColor="@color/blue"
-                android:textSize="25sp"
-                tools:text="42" />
-        </androidx.cardview.widget.CardView>
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/Tv_Total_Price"
+                app:layout_constraintTop_toBottomOf="@id/Tv_Total_Price"
+                tools:text="EGP 3,500" />
 
-        <TextView
-            android:id="@+id/Tv_Color"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="18dp"
-            android:text="Color"
-            android:textColor="#06004F"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@id/ProductImage"
-            app:layout_constraintTop_toBottomOf="@id/Size_Button_1" />
+            <Button
+                android:id="@+id/Add_to_cart_button"
+                android:layout_width="250dp"
+                android:layout_height="60dp"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="@color/blue2"
+                android:text="Add To Cart"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/Tv_Total_Price" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/Color_Button_Black"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            android:backgroundTint="@color/black2"
-            app:cardCornerRadius="18dp"
-            app:layout_constraintStart_toStartOf="@id/Tv_Color"
-            app:layout_constraintTop_toBottomOf="@id/Tv_Color"></androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/Color_Button_Red"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            android:backgroundTint="@color/red"
-            app:cardCornerRadius="18dp"
-            app:layout_constraintStart_toEndOf="@id/Color_Button_Black"
-            app:layout_constraintTop_toBottomOf="@id/Tv_Color"></androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/Color_Button_Blue"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            android:backgroundTint="@color/blue3"
-            app:cardCornerRadius="18dp"
-            app:layout_constraintStart_toEndOf="@id/Color_Button_Red"
-            app:layout_constraintTop_toBottomOf="@id/Tv_Color"></androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/Color_Button_Green"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            android:backgroundTint="@color/green"
-            app:cardCornerRadius="18dp"
-            app:layout_constraintStart_toEndOf="@id/Color_Button_Blue"
-            app:layout_constraintTop_toBottomOf="@id/Tv_Color"></androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/Color_Button_Rose"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            android:backgroundTint="#FF645A"
-            app:cardCornerRadius="18dp"
-            app:layout_constraintStart_toEndOf="@id/Color_Button_Green"
-            app:layout_constraintTop_toBottomOf="@id/Tv_Color"></androidx.cardview.widget.CardView>
-
-        <TextView
-            android:id="@+id/Tv_Total_Price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="30dp"
-            android:fontFamily="@font/poppins_light"
-            android:text="Total Price"
-            android:textColor="#9906004F"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@id/ProductImage"
-            app:layout_constraintTop_toBottomOf="@id/Color_Button_Black" />
-
-        <TextView
-            android:id="@+id/Tv_Price_Total"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="16dp"
-            android:textColor="@color/blue"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@id/Tv_Total_Price"
-            app:layout_constraintTop_toBottomOf="@id/Tv_Total_Price"
-            tools:text="EGP 3,500" />
-
-        <Button
-            android:id="@+id/Add_to_cart_button"
-            android:layout_width="250dp"
-            android:layout_height="60dp"
-            android:layout_marginEnd="16dp"
-            android:backgroundTint="@color/blue2"
-            android:text="Add To Cart"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/Tv_Total_Price" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/baseline_add_shopping_cart_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Color_Button_Blue"
-            tools:layout_editor_absoluteX="172dp" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_add_shopping_cart_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Color_Button_Blue"
+                tools:layout_editor_absoluteX="172dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>
