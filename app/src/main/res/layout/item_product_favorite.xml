@@ -38,6 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nike Air Jordon"
+                android:maxLines="1"
                 android:layout_marginTop="8dp"
                 android:textColor="#06004F"
                 android:textSize="18sp"
@@ -60,6 +61,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Black color"
+                    android:maxLines="1"
                     android:textColor="#06004F"
                     android:textSize="14sp"
                     android:layout_marginStart="9dp" />
