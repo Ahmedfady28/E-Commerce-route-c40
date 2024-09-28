@@ -55,7 +55,7 @@ class CartFragment : BaseFragment<FragmentCartBinding, CartViewModel>()
 
     private fun initViews()
     {
-        binding.cartRecyclerViewe.adapter = cartAdapter
+        binding.cartRecyclerView.adapter = cartAdapter
 
         cartAdapter.onIncrementClickListener =
             CartAdapter.OnItemClickListener { product, position ->
