@@ -76,16 +76,6 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <!-- Currency Text -->
-                    <TextView
-                        android:id="@+id/product_currencye"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="EGP"
-                        android:textColor="#06004F"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
                     <!-- Price Text -->
                     <TextView
                         android:id="@+id/product_pricee"
@@ -126,7 +116,7 @@
 
                     <!-- Minus Button -->
                     <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/minus_buttone"
+                        android:id="@+id/btn_dec_item_cart"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:background="@android:color/transparent"
@@ -134,7 +124,7 @@
 
                     <!-- Quantity Text -->
                     <TextView
-                        android:id="@+id/quantity_texte"
+                        android:id="@+id/tv_counter_item_cart"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingStart="8dp"
@@ -145,7 +135,7 @@
 
                     <!-- Plus Button -->
                     <ImageButton
-                        android:id="@+id/plus_buttone"
+                        android:id="@+id/btn_inc_item_cart"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:background="@android:color/transparent"

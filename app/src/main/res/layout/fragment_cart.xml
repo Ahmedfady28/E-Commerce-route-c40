@@ -56,7 +56,7 @@
 
             <!-- Shopping Cart Button -->
             <ImageButton
-                android:id="@+id/shopping_bar"
+                android:id="@+id/clean_cart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
@@ -70,6 +70,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="16dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@+id/checkout_section"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -105,10 +106,11 @@
                     android:textSize="18sp" />
 
                 <TextView
+                    android:id="@+id/total_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/myfont"
-                    android:text="EGP 3,500"
+                    tools:text="EGP 3,500"
                     android:textColor="#06004F"
                     android:textSize="18sp" />
             </LinearLayout>

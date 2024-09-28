@@ -2,12 +2,11 @@ package com.route.data.api
 
 import com.route.data.api.model.request.AddCartRequest
 import com.route.data.api.model.request.AddWishListRequest
+import com.route.data.api.model.request.ClearCartRequest
+import com.route.data.api.model.request.UpdateCartRequest
 import com.route.data.api.model.response.BaseResponse
 import com.route.data.api.model.response.BrandDto
-import com.route.data.api.model.response.AddToCartResponse
-import com.route.data.api.model.response.CartResponse
 import com.route.data.api.model.response.CategoriesResponse
-import com.route.data.api.model.response.Data
 import com.route.data.api.model.response.LoginRequest
 import com.route.data.api.model.response.LoginResponse
 import com.route.data.api.model.response.ProductDto
@@ -15,12 +14,14 @@ import com.route.data.api.model.response.ProductsResponse
 import com.route.data.api.model.response.SignUpRequest
 import com.route.data.api.model.response.SignUpResponse
 import com.route.data.api.model.response.WishListResponse
-import com.route.domain.model.ApiResult
-import kotlinx.coroutines.flow.Flow
+import com.route.data.api.model.response.cart.ProductsAddItemCartDto
+import com.route.data.api.model.response.cart.ProductsItemCartDto
+import com.route.data.api.model.response.cart.ResponseCart
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -66,12 +67,18 @@ interface WebServices {
     ): BaseResponse<List<String>?>
 
     @GET("api/v1/cart")
-    suspend fun getCart(): CartResponse
+    suspend fun getCart(): ResponseCart<ProductsItemCartDto>
 
     @POST("api/v1/cart")
     suspend fun addToCart(
         @Body body: AddCartRequest
-    ): BaseResponse<List<String>?>
+    ): ResponseCart<ProductsAddItemCartDto>
+
+    @DELETE("api/v1/cart/{idProduct}")
+    suspend fun removeFromCart(
+        @Path("idProduct") idProduct: String
+    ): ResponseCart<ProductsItemCartDto>
+
 
 
     @GET("/api/v1/brands")
@@ -81,6 +88,17 @@ interface WebServices {
     suspend fun getSpecificProduct(
         @Path("id") id: String
     ): BaseResponse<ProductDto>
+
+
+    @DELETE("api/v1/cart")
+    suspend fun clearCart(): ClearCartRequest
+
+
+    @PUT("api/v1/cart/{idItemCart}")
+    suspend fun updateCart(
+        @Body body: UpdateCartRequest,
+        @Path("idItemCart") idProduct: String
+    ): ResponseCart<ProductsItemCartDto>
 
 
 }

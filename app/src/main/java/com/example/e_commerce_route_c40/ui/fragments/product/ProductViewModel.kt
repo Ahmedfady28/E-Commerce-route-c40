@@ -1,6 +1,5 @@
 package com.example.e_commerce_route_c40.ui.fragments.product
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import com.example.e_commerce_route_c40.base.BaseViewModel
@@ -30,6 +29,7 @@ class ProductViewModel @Inject constructor(
 
     val productsLiveData = MutableLiveData<List<Product>?>()
     val productWishListUpdatePosition = MutableLiveData<Int>()
+
     private val subCategory: SubCategory? = savedStateHandle["subCategory"]
     private val brand: Brand? = savedStateHandle["brand"]
 
@@ -57,8 +57,6 @@ class ProductViewModel @Inject constructor(
     }
 
     fun getProducts() {
-        Log.d("ssdd", brand?.id.toString())
-        Log.d("ssdd", subCategory?.id.toString())
         if (brand == null) {//&& subCategory== null
             getAllProducts()
             return
@@ -99,7 +97,7 @@ class ProductViewModel @Inject constructor(
         launch {
             addToWishListUseCase.invoke(product).collect { result ->
                 handleCollectScope(result) {
-                    updateProductState(product)
+                    updateProductStateIntoWishList(product)
                 }
             }
         }
@@ -110,14 +108,12 @@ class ProductViewModel @Inject constructor(
         if (product == null) return
         launch {
             addToCartUseCase.invoke(product).collect { result ->
-                handleCollectScope(result) {
-                    updateProductState(product)
-                }
+                handleCollectScope(result) {}
             }
         }
     }
 
-    private fun updateProductState(product: Product) {
+    private fun updateProductStateIntoWishList(product: Product) {
         val pos = productsLiveData.value?.indexOf(product) ?: -1
         if (pos != -1) {
             product.isLiked = !product.isLiked
@@ -131,7 +127,7 @@ class ProductViewModel @Inject constructor(
             removeProductFromWishListUseCase.invoke(product.id!!)
                 .collect { result ->
                     handleCollectScope(result) {
-                        updateProductState(product)
+                        updateProductStateIntoWishList(product)
                     }
                 }
         }

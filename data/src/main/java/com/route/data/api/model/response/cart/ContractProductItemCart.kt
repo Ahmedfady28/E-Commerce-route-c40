@@ -1,15 +1,10 @@
-package com.route.data.api.model.response
+package com.route.data.api.model.response.cart
 
-import kotlinx.parcelize.Parcelize
-import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import com.route.domain.model.ProductItemCart
 
-@Parcelize
-class ProductsItem(
 
-    @field:SerializedName("product")
-    val product: String? = null,
-
+abstract class ContractProductItemCart(
     @field:SerializedName("price")
     val price: Int? = null,
 
@@ -18,4 +13,6 @@ class ProductsItem(
 
     @field:SerializedName("_id")
     val id: String? = null
-) : Parcelable
+) {
+    abstract fun toProductItemCart(): ProductItemCart
+}

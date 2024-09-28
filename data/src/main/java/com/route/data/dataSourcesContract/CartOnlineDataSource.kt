@@ -1,11 +1,14 @@
 package com.route.data.dataSourcesContract
 
+import com.route.domain.model.ActionCart
 import com.route.domain.model.ApiResult
-import com.route.domain.model.Product
 import kotlinx.coroutines.flow.Flow
 
 interface CartOnlineDataSource
 {
-    fun getCart(): Flow<ApiResult<List<Product>?>>
-    fun addToCart(id: String?): Flow<ApiResult<List<String>?>>
+    fun getCart(): Flow<ApiResult<ActionCart?>?>
+    fun addToCart(id: String): Flow<ApiResult<ActionCart?>?>
+    fun removeFromCart(id: String): Flow<ApiResult<ActionCart?>?>
+    fun clearCart(id: String): Flow<ApiResult<String?>?>
+    fun updateCart(id: String, newCount: Int): Flow<ApiResult<ActionCart?>?>
 }

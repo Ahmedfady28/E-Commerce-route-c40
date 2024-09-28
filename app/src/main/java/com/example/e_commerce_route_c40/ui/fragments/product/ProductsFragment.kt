@@ -9,7 +9,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.e_commerce_route_c40.R
 import com.example.e_commerce_route_c40.base.BaseFragment
 import com.example.e_commerce_route_c40.databinding.FragmentProductBinding
-import com.example.e_commerce_route_c40.ui.fragments.cart.CartAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -68,14 +67,8 @@ class ProductsFragment : BaseFragment<FragmentProductBinding, ProductViewModel>(
         }
 
         productsAdaptor.onAddClickListener =
-                ProductsAdaptor.OnAddedClickListener { product, position ->
-                    if (product?.isLiked == false)
+            ProductsAdaptor.OnAddedClickListener { product, _ ->
                         viewModel.addProductToCart(product)
-                    else
-                    {
-
-                    }
-
                 }
 
 

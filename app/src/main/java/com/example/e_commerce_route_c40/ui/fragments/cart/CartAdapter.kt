@@ -2,43 +2,49 @@ package com.example.e_commerce_route_c40.ui.fragments.cart
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.e_commerce_route_c40.R
+import com.example.e_commerce_route_c40.base.BaseAdapter
 import com.example.e_commerce_route_c40.databinding.ItemCartBinding
-import com.route.domain.model.Product
+import com.route.domain.model.ProductItemCart
 
-class CartAdapter(
-    private var products: List<Product> = listOf()
-) : RecyclerView.Adapter<CartAdapter.ProductViewHolder>()
-{
+class CartAdapter : BaseAdapter<ProductItemCart, ItemCartBinding>() {
 
-    inner class ProductViewHolder(val binding: ItemCartBinding) :
-        RecyclerView.ViewHolder(binding.root)
+    var onIncrementClickListener: OnItemClickListener? = null
+    var onDecrementClickListener: OnItemClickListener? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder
-    {
-        val binding = ItemCartBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ProductViewHolder(binding)
-    }
+    override fun getBinding(parent: ViewGroup, viewType: Int): ItemCartBinding =
+        ItemCartBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-    override fun onBindViewHolder(holder: ProductViewHolder, position: Int)
-    {
-        val product = products[position]
-        holder.binding.apply {
-            productNamee.text = product.title
-            productPricee.text = "EGP ${product.price}"
+
+    override fun bindData(binding: ItemCartBinding, item: ProductItemCart, position: Int) {
+        binding.apply {
+            productNamee.text = item.product?.title
+            productPricee.text = buildString {
+                append(item.price.toString())
+                append(" $")
+            }
+
             Glide.with(root.context)
-                .load(product.imageCover)
+                .load(item.product?.imageCover)
+                .placeholder(R.drawable.img_coming_soon)
                 .into(productImagee)
 
+            tvCounterItemCart.text = item.count.toString()
+
+            btnIncItemCart.setOnClickListener {
+                onIncrementClickListener?.onItemClick(item, position)
+            }
+            btnDecItemCart.setOnClickListener {
+                onDecrementClickListener?.onItemClick(item, position)
+            }
+
         }
+
+
     }
 
-    override fun getItemCount(): Int = products.size
-
-    fun updateProducts(newProducts: List<Product>)
-    {
-        products = newProducts
-        notifyDataSetChanged()
+    fun interface OnItemClickListener {
+        fun onItemClick(product: ProductItemCart, position: Int)
     }
 }

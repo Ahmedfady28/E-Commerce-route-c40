@@ -1,12 +1,12 @@
-package com.route.data.api.model.response
+package com.route.data.api.model.response.cart
 
-import kotlinx.parcelize.Parcelize
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
+import kotlinx.parcelize.RawValue
 
 @Parcelize
-class Data(
-
+data class DataCart<ItemCartDto>(
     @field:SerializedName("cartOwner")
     val cartOwner: String? = null,
 
@@ -23,7 +23,7 @@ class Data(
     val id: String? = null,
 
     @field:SerializedName("products")
-    val products: List<ProductsItem?>? = null,
+    val products: @RawValue List<ItemCartDto?>? = null,
 
     @field:SerializedName("updatedAt")
     val updatedAt: String? = null

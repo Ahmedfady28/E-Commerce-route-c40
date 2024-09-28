@@ -7,12 +7,10 @@ import com.route.domain.repositories.CartRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class AddProductToCartUseCase @Inject constructor(
+class RemoveProductFromCartUseCase @Inject constructor(
     private val cartRepository: CartRepository
-)
-{
-    fun invoke(product: Product): Flow<ApiResult<ActionCart?>?>
-    {
-        return cartRepository.addToCart(product.id ?: "")
+) {
+    fun invoke(product: Product): Flow<ApiResult<ActionCart?>?> {
+        return cartRepository.removeFromCart(product.id ?: "")
     }
 }

@@ -4,6 +4,7 @@ import com.example.e_commerce_route_c40.adapters.HomeCategoriesAdapter
 import com.example.e_commerce_route_c40.ui.fragments.cart.CartAdapter
 import com.example.e_commerce_route_c40.ui.fragments.category.CategoriesAdapter
 import com.example.e_commerce_route_c40.ui.fragments.category.SubCategoriesAdapter
+import com.example.e_commerce_route_c40.ui.fragments.favorite.FavoriteProductAdapter
 import com.example.e_commerce_route_c40.ui.fragments.home.AdapterMostSeller
 import com.example.e_commerce_route_c40.ui.fragments.home.BrandAdapter
 import com.example.e_commerce_route_c40.ui.fragments.product.ProductsAdaptor
@@ -41,7 +42,11 @@ class Di {
     @FragmentScoped
     fun provideProductMostSellerAdapter(): AdapterMostSeller = AdapterMostSeller()
 
-//    @Provides
-//    @FragmentScoped
-//    fun provideCArtAdaptor(): CartAdapter = CartAdapter()
+    @Provides
+    @FragmentScoped
+    fun provideCartAdaptor(): CartAdapter = CartAdapter()
+
+    @Provides
+    @FragmentScoped
+    fun provideFavoriteProductAdapter(): FavoriteProductAdapter = FavoriteProductAdapter()
 }

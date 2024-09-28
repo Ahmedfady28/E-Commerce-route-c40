@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import com.example.e_commerce_route_c40.R
 import com.example.e_commerce_route_c40.adapters.HomeCategoriesAdapter
 import com.example.e_commerce_route_c40.base.BaseFragment
@@ -85,6 +84,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                 else
                     viewModel.removeProductToWishList(product)
 
+            }
+
+        adapterMostSeller.onAddCartClickListener =
+            AdapterMostSeller.OnItemClickListener { product, _ ->
+                viewModel.addProductToCart(product)
             }
 
 

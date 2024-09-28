@@ -7,6 +7,7 @@ import com.route.domain.model.Brand
 import com.route.domain.model.Category
 import com.route.domain.model.Product
 import com.route.domain.usecase.brand.GetBrandsUseCase
+import com.route.domain.usecase.cart.AddProductToCartUseCase
 import com.route.domain.usecase.category.GetCategoriesUseCase
 import com.route.domain.usecase.product.GetProductsUseCase
 import com.route.domain.usecase.wishList.AddProductToWishListUseCase
@@ -23,7 +24,8 @@ class HomeViewModel @Inject constructor(
     private val getBrandsUseCase: GetBrandsUseCase,
     private val getProductsUseCase: GetProductsUseCase,
     private val addToWishListUseCase: AddProductToWishListUseCase,
-    private val removeProductFromWishListUseCase: RemoveProductFromWishListUseCase
+    private val removeProductFromWishListUseCase: RemoveProductFromWishListUseCase,
+    private val addToCartUseCase: AddProductToCartUseCase
 ) : BaseViewModel() {
     val categoriesLiveData = MutableLiveData<List<Category>?>()
     val brandsLiveData = MutableLiveData<List<Brand>?>()
@@ -108,5 +110,14 @@ class HomeViewModel @Inject constructor(
                 }
         }
 
+    }
+
+    fun addProductToCart(product: Product?) {
+        if (product == null) return
+        viewModelScope.launch {
+            addToCartUseCase.invoke(product).collect { result ->
+                handleCollectScope(result) {}
+            }
+        }
     }
 }
