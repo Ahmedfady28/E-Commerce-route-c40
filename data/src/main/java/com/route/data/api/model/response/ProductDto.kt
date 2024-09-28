@@ -51,7 +51,10 @@ data class ProductDto(
 	val slug: String? = null,
 
 	@field:SerializedName("updatedAt")
-	val updatedAt: String? = null
+    val updatedAt: String? = null,
+
+    @field:SerializedName("count")
+    val count: Int? = null
 ) {
 
   fun toProduct() : Product{
@@ -72,7 +75,8 @@ data class ProductDto(
 			category = category?.toCategory(),
 			brand = brand?.toBrand(),
 			slug = slug,
-			updatedAt = updatedAt
+            updatedAt = updatedAt,
+            count = count
 		)
 	}
 }

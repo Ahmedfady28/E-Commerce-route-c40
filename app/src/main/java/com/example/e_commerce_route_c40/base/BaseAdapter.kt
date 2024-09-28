@@ -49,6 +49,8 @@ abstract class BaseAdapter<TypeItemList, VB : ViewBinding> :
         notifyDataSetChanged()
     }
 
+    fun changeItemDate(position: Int) = notifyItemChanged(position)
+
     fun removeItem(position: Int) {
         items?.removeAt(position)
         notifyItemChanged(position)

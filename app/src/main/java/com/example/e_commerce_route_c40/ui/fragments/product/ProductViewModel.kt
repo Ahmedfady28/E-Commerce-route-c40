@@ -1,6 +1,5 @@
 package com.example.e_commerce_route_c40.ui.fragments.product
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import com.example.e_commerce_route_c40.base.BaseViewModel
@@ -8,6 +7,7 @@ import com.route.data.api.interceptor.IODispatcher
 import com.route.domain.model.Brand
 import com.route.domain.model.Product
 import com.route.domain.model.SubCategory
+import com.route.domain.usecase.cart.AddProductToCartUseCase
 import com.route.domain.usecase.product.GetProductsUseCase
 import com.route.domain.usecase.wishList.AddProductToWishListUseCase
 import com.route.domain.usecase.wishList.RemoveProductFromWishListUseCase
@@ -22,12 +22,14 @@ class ProductViewModel @Inject constructor(
     private val productsUseCase: GetProductsUseCase,
     private val addToWishListUseCase: AddProductToWishListUseCase,
     private val removeProductFromWishListUseCase: RemoveProductFromWishListUseCase,
+    private val addToCartUseCase: AddProductToCartUseCase,
     @IODispatcher override val coroutineContext: CoroutineContext,
     savedStateHandle: SavedStateHandle,
 ) : BaseViewModel(),CoroutineScope {
 
     val productsLiveData = MutableLiveData<List<Product>?>()
     val productWishListUpdatePosition = MutableLiveData<Int>()
+
     private val subCategory: SubCategory? = savedStateHandle["subCategory"]
     private val brand: Brand? = savedStateHandle["brand"]
 
@@ -55,8 +57,6 @@ class ProductViewModel @Inject constructor(
     }
 
     fun getProducts() {
-        Log.d("ssdd", brand?.id.toString())
-        Log.d("ssdd", subCategory?.id.toString())
         if (brand == null) {//&& subCategory== null
             getAllProducts()
             return
@@ -97,13 +97,23 @@ class ProductViewModel @Inject constructor(
         launch {
             addToWishListUseCase.invoke(product).collect { result ->
                 handleCollectScope(result) {
-                    updateProductState(product)
+                    updateProductStateIntoWishList(product)
                 }
             }
         }
     }
 
-    private fun updateProductState(product: Product) {
+    fun addProductToCart(product: Product?)
+    {
+        if (product == null) return
+        launch {
+            addToCartUseCase.invoke(product).collect { result ->
+                handleCollectScope(result) {}
+            }
+        }
+    }
+
+    private fun updateProductStateIntoWishList(product: Product) {
         val pos = productsLiveData.value?.indexOf(product) ?: -1
         if (pos != -1) {
             product.isLiked = !product.isLiked
@@ -117,7 +127,7 @@ class ProductViewModel @Inject constructor(
             removeProductFromWishListUseCase.invoke(product.id!!)
                 .collect { result ->
                     handleCollectScope(result) {
-                        updateProductState(product)
+                        updateProductStateIntoWishList(product)
                     }
                 }
         }

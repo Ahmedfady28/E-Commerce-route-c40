@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.e_commerce_route_c40.base.BaseViewModel
 import com.route.domain.model.Product
+import com.route.domain.usecase.cart.AddProductToCartUseCase
 import com.route.domain.usecase.wishList.GetWishlistUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -13,7 +14,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FavoriteViewModel @Inject constructor(
-    private val getWishlistUseCase: GetWishlistUseCase
+    private val getWishlistUseCase: GetWishlistUseCase,
+    private val addToCartUseCase: AddProductToCartUseCase
 ) : BaseViewModel() {
     val wishlistLiveData = MutableLiveData<List<Product>?>()
     fun getWishlist() {
@@ -26,5 +28,14 @@ class FavoriteViewModel @Inject constructor(
                         }
                     }
             }
+    }
+
+    fun addProductToCart(product: Product?) {
+        if (product == null) return
+        viewModelScope.launch {
+            addToCartUseCase.invoke(product).collect { result ->
+                handleCollectScope(result) {}
+            }
+        }
     }
 }

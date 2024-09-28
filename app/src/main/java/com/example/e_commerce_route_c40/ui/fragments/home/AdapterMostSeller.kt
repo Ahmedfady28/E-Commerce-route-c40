@@ -14,6 +14,7 @@ class AdapterMostSeller : BaseAdapter<Product, ItemHomeMostSellerBinding>() {
 
     var onProductClickListener: OnItemClickListener? = null
     var onFavoriteClickListener: OnItemClickListener? = null
+    var onAddCartClickListener: OnItemClickListener? = null
     override fun getBinding(parent: ViewGroup, viewType: Int): ItemHomeMostSellerBinding =
         ItemHomeMostSellerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
@@ -45,6 +46,9 @@ class AdapterMostSeller : BaseAdapter<Product, ItemHomeMostSellerBinding>() {
 
                 icFavoriteBlue.setOnClickListener {
                     onFavoriteClickListener?.onItemClick(item, position)
+                }
+                btnAddCart.setOnClickListener {
+                    onAddCartClickListener?.onItemClick(item, position)
                 }
             }
 

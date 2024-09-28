@@ -86,6 +86,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
             }
 
+        adapterMostSeller.onAddCartClickListener =
+            AdapterMostSeller.OnItemClickListener { product, _ ->
+                viewModel.addProductToCart(product)
+            }
+
 
         adapterMostSeller.onProductClickListener =
             AdapterMostSeller.OnItemClickListener { product, _ ->
@@ -110,6 +115,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             }
             tvViewAllBrands.setOnClickListener {
                 val action = HomeFragmentDirections.actionHomeFragmentToProductsFragment()
+                Navigation.findNavController(binding.root).navigate(action)
+            }
+            btnCart.setOnClickListener {
+
+                val action = HomeFragmentDirections.actionHomeFragmentToCartFragment()
                 Navigation.findNavController(binding.root).navigate(action)
             }
 

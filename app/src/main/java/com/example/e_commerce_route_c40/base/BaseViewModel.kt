@@ -1,5 +1,6 @@
 package com.example.e_commerce_route_c40.base
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.e_commerce_route_c40.R
@@ -13,7 +14,10 @@ open class BaseViewModel:ViewModel() {
 
     fun handleError(throwable:Throwable,
                     posActionCallBack: OnDialogClick?=null){
+
+        Log.e("errorrrr", "Type: $throwable")
         if(throwable is ServerError){
+            Log.e("errorrrr", "Type: serverError")
 
             uiMessage.postValue(UIMessage(
                 showLoading = false,
@@ -27,9 +31,11 @@ open class BaseViewModel:ViewModel() {
 
         val message = when(throwable){
             is ConnectionError ->{
+                Log.e("errorrrr", "Type: ConnectionError")
                 R.string.connection_error
             }
             else->{
+                Log.e("errorrrr", "Type: erroe")
                 R.string.somethin_went_wrong
             }
         }
@@ -67,7 +73,7 @@ open class BaseViewModel:ViewModel() {
 
     }
     fun <T> handleCollectScope(
-        result: ApiResult<T?>,
+        result: ApiResult<T?>?,
         onRetry: (() -> Unit)? = null,
         onSuccess: (T?) -> Unit
     ) {
@@ -80,6 +86,7 @@ open class BaseViewModel:ViewModel() {
 
             is ApiResult.Loading -> handleLoading(result)
             is ApiResult.Success -> onSuccess(result.data)
+            null -> return
         }
 
     }

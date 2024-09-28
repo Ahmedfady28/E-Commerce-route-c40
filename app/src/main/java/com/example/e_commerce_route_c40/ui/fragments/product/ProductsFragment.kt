@@ -21,6 +21,7 @@ class ProductsFragment : BaseFragment<FragmentProductBinding, ProductViewModel>(
     @Inject
     lateinit var productsAdaptor: ProductsAdaptor
 
+
     override fun initViewModel()    : ProductViewModel = _viewModel
 
     override fun getLayoutId()      : Int = R.layout.fragment_product
@@ -42,6 +43,8 @@ class ProductsFragment : BaseFragment<FragmentProductBinding, ProductViewModel>(
         viewModel.productWishListUpdatePosition.observe(viewLifecycleOwner){pos->
             productsAdaptor.notifyItemChanged(pos)
         }
+
+
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -62,6 +65,14 @@ class ProductsFragment : BaseFragment<FragmentProductBinding, ProductViewModel>(
                 findNavController().navigate(act)
             }
         }
+
+        productsAdaptor.onAddClickListener =
+            ProductsAdaptor.OnAddedClickListener { product, _ ->
+                        viewModel.addProductToCart(product)
+                }
+
+
+
         binding.rvProduct.adapter = productsAdaptor
 
         binding.etSearch.setOnEditorActionListener { view, actionId, event ->

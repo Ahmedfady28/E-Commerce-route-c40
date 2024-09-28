@@ -63,6 +63,7 @@ object ApiModule {
         return Gson()
     }
 
+
     @Provides
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient,
