@@ -2,6 +2,8 @@ package com.example.e_commerce_route_c40.ui.fragments.product
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.viewModels
@@ -31,6 +33,23 @@ class ProductsFragment : BaseFragment<FragmentProductBinding, ProductViewModel>(
         initViews()
         observeLivedata()
         viewModel.getProducts()
+        setupSearchBar()
+    }
+
+    private fun setupSearchBar() {
+        binding.etSearch.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if (!query.isNullOrEmpty()) {
+                        viewModel.searchProducts(query)
+                }
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+
+        })
     }
 
     private fun observeLivedata() {
@@ -74,17 +93,6 @@ class ProductsFragment : BaseFragment<FragmentProductBinding, ProductViewModel>(
 
 
         binding.rvProduct.adapter = productsAdaptor
-
-        binding.etSearch.setOnEditorActionListener { view, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-
-                val query = view.text.toString().trim()
-                viewModel.getProductsByKey(query)
-
-                return@setOnEditorActionListener true
-            } else return@setOnEditorActionListener false
-
-        }
     }
     private fun updateUiProducts() {
         if (viewModel.productsLiveData.value.isNullOrEmpty()) {

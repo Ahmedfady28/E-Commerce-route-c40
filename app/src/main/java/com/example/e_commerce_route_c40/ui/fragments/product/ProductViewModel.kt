@@ -2,6 +2,7 @@ package com.example.e_commerce_route_c40.ui.fragments.product
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.viewModelScope
 import com.example.e_commerce_route_c40.base.BaseViewModel
 import com.route.data.api.interceptor.IODispatcher
 import com.route.domain.model.Brand
@@ -132,5 +133,16 @@ class ProductViewModel @Inject constructor(
                 }
         }
 
+    }
+
+    fun searchProducts(query: String){
+        viewModelScope.launch {
+            productsUseCase.invoke(search = query)
+                .collect { res ->
+                    handleCollectScope(res) { dataList ->
+                        productsLiveData.postValue(dataList)
+                    }
+                }
+        }
     }
 }

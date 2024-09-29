@@ -11,13 +11,14 @@ import javax.inject.Inject
 class GetProductsUseCase @Inject constructor(
     private val productsRepository: ProductsRepository
 ) {
-    suspend fun invoke(
+    fun invoke(
         categoryId: String? = null,
         brandId: String? = null,
         keyword: String? = null,
         sortBy: String? = null,
+        search: String? = null
     ): Flow<ApiResult<List<Product>?>> {
         Log.e("GetProductsUseCase categoryId", categoryId.toString())
-        return productsRepository.getProducts(categoryId, brandId, keyword, sortBy)
+        return productsRepository.getProducts(categoryId, brandId, keyword, sortBy, search)
     }
 }

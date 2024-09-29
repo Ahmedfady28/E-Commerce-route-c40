@@ -12,9 +12,14 @@ abstract class SwipeToDelete :
         target: RecyclerView.ViewHolder
     ): Boolean = false
 
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                // Remove the swiped item from your data list and notify the adapter
+                val position = viewHolder.adapterPosition
+               // adapter.removeItem(position)
+               // Ensure you have a method in your adapter to delete items
+            }
 
 }
 
 //    val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
 //    itemTouchHelper.attachToRecyclerView(recyclerView)
-

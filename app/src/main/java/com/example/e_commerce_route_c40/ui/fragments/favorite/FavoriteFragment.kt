@@ -1,7 +1,6 @@
 package com.example.e_commerce_route_c40.ui.fragments.favorite
 
 
-
 import android.os.Bundle
 import android.util.Log
 import android.view.View
