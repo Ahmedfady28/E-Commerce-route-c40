@@ -2,12 +2,16 @@ package com.example.e_commerce_route_c40.ui.fragments.cart
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.example.e_commerce_route_c40.R
 import com.example.e_commerce_route_c40.base.BaseFragment
 import com.example.e_commerce_route_c40.databinding.FragmentCartBinding
+import com.example.e_commerce_route_c40.util.SwipeToDelete
 import com.route.domain.model.Product
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -24,6 +28,8 @@ class CartFragment : BaseFragment<FragmentCartBinding, CartViewModel>()
 
     @Inject
     lateinit var cartAdapter: CartAdapter
+
+    private lateinit var swipeClickListener: SwipeToDelete
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?)
     {
@@ -74,6 +80,25 @@ class CartFragment : BaseFragment<FragmentCartBinding, CartViewModel>()
                 append(" $")
             }
         }
+
+        swipeClickListener = initSwipeAction(viewModel, cartAdapter)
+        val itemTouchHelper = ItemTouchHelper(swipeClickListener)
+        itemTouchHelper.attachToRecyclerView(binding.cartRecyclerView)
+    }
+
+    private fun initSwipeAction(viewModel: CartViewModel, cartAdapter: CartAdapter): SwipeToDelete =
+        object : SwipeToDelete() {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                cartAdapter.getItem(viewHolder.adapterPosition)?.product?.let {
+                    viewModel.removeFromCart(
+                        it
+                    )
+                }
+                Log.e(
+                    "id",
+                    cartAdapter.getItem(viewHolder.adapterPosition)?.product?.title.toString()
+                )
+            }
     }
 
     private fun updateCountProduct(

@@ -62,4 +62,12 @@ abstract class BaseAdapter<TypeItemList, VB : ViewBinding> :
             items!!.removeAt(index)
         return
     }
+
+    fun getItem(index: Int): TypeItemList? {
+        if (index > -1 && index < items?.size!!) return items!![index]
+        return null
+
+    }
+
+    fun getItems(): MutableList<TypeItemList>? = items
 }
