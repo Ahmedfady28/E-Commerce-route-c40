@@ -30,7 +30,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
             android:orientation="vertical"
             android:gravity="center_vertical">
 
@@ -38,7 +38,7 @@
                 android:id="@+id/textViewTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nike Air Jordon"
+                tools:text="Nike Air Jordon"
                 android:maxLines="1"
                 android:layout_marginTop="8dp"
                 android:textColor="#06004F"
@@ -52,8 +52,8 @@
                 android:layout_marginTop="10dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
                     android:layout_marginTop="2dp"
                     android:background="@drawable/circle_view" />
 
@@ -117,7 +117,7 @@
                 android:layout_height="38dp"
                 android:background="@drawable/btn_design"
                 android:text="Add to Cart"
-                android:textSize="12dp"
+                android:textSize="12sp"
                 android:textStyle="bold"
                 android:layout_marginTop="20dp"
                 android:layout_gravity="bottom"
