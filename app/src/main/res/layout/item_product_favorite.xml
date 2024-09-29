@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -80,23 +81,13 @@
                     android:id="@+id/textViewNewPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="EGP 1,200"
+                    tools:text="EGP 1,200"
                     android:textColor="#06004F"
                     android:textStyle="bold"
                     android:textSize="16sp"
                     android:layout_marginTop="10dp" />
 
-                <TextView
-                    android:id="@+id/textViewOldPrice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="EGP 1,500"
-                    android:textColor="#06004F"
-                    android:textSize="12sp"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="10dp"
 
-                    />
 
 
             </LinearLayout>

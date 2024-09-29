@@ -7,8 +7,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.e_commerce_route_c40.R
 import com.example.e_commerce_route_c40.base.BaseFragment
 import com.example.e_commerce_route_c40.databinding.SplashBinding
-import com.example.e_commerce_route_c40.ui.activities.MainActivity
-import com.example.e_commerce_route_c40.util.makeNavyBottomVisible
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,11 +18,6 @@ class SplashScreen : BaseFragment<SplashBinding, SplashViewModel>() {
 
     override fun getLayoutId(): Int {
         return R.layout.splash
-    }
-
-    override fun onStart() {
-        super.onStart()
-        (activity as MainActivity).makeNavyBottomVisible(false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

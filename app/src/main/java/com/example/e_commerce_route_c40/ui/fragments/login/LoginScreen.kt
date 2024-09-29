@@ -14,15 +14,12 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class LoginScreen : BaseFragment<LoginPageBinding, LoginViewModel>() {
 
-    override fun getLayoutId(): Int {
-        return R.layout.login_page
-    }
+    override fun getLayoutId(): Int = R.layout.login_page
+
 
     private val _viewModel: LoginViewModel by viewModels ()
 
-    override fun initViewModel(): LoginViewModel {
-        return _viewModel
-    }
+    override fun initViewModel(): LoginViewModel = _viewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

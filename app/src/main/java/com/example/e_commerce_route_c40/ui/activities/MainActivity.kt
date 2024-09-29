@@ -3,36 +3,37 @@ package com.example.e_commerce_route_c40.ui.activities
 import android.graphics.Rect
 import android.os.Bundle
 import android.view.View
+import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.e_commerce_route_c40.R
 import com.example.e_commerce_route_c40.base.BaseActivity
 import com.example.e_commerce_route_c40.databinding.ActivityMainBinding
+import com.example.e_commerce_route_c40.util.makeNavyBottomVisible
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
-    override fun getLayoutId(): Int {
-        return R.layout.activity_main
-    }
+    private lateinit var navController: NavController
+
+    override fun getLayoutId(): Int = R.layout.activity_main
+
+    private fun initNavController() = findNavController(R.id.fragmentContainerView)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        this.navController = initNavController()
         linkNavHostWithBottomNavigation()
-        binding.bottomNavigation.visibility = View.GONE
-
-        linkNavHostWithBottomNavigation()
-        handleKeyboardVisibility()
-
+        handleNavigationBottomVisibility()
     }
 
-    private fun linkNavHostWithBottomNavigation() {
-        val navController = findNavController(R.id.fragmentContainerView)
+    private fun linkNavHostWithBottomNavigation() =
         binding.bottomNavigation.setupWithNavController(navController)
-    }
 
-    private fun handleKeyboardVisibility() {
+
+    private fun handleNavigationBottomVisibility() {
         // Listen for layout changes
         binding.root.viewTreeObserver.addOnGlobalLayoutListener {
             val rect = Rect()
@@ -47,9 +48,21 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 binding.bottomNavigation.visibility = View.GONE
             } else {
                 // Keyboard is closed
-                binding.bottomNavigation.visibility = View.VISIBLE
+                this.onDestinationChange()
             }
 
+        }
+    }
+
+
+    private fun onDestinationChange() {
+        navController.addOnDestinationChangedListener { _, nd: NavDestination, _ ->
+            when (nd.id) {
+                R.id.loginScreen,
+                R.id.splashScreen -> this.makeNavyBottomVisible(false)
+
+                else -> this.makeNavyBottomVisible(true)
+            }
         }
     }
 }
