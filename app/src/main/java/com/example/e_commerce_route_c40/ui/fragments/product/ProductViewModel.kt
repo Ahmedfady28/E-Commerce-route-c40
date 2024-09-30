@@ -10,6 +10,7 @@ import com.route.domain.model.Product
 import com.route.domain.model.SubCategory
 import com.route.domain.usecase.cart.AddProductToCartUseCase
 import com.route.domain.usecase.product.GetProductsUseCase
+import com.route.domain.usecase.product.SearchForProductsUseCase
 import com.route.domain.usecase.wishList.AddProductToWishListUseCase
 import com.route.domain.usecase.wishList.RemoveProductFromWishListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -24,6 +25,7 @@ class ProductViewModel @Inject constructor(
     private val addToWishListUseCase: AddProductToWishListUseCase,
     private val removeProductFromWishListUseCase: RemoveProductFromWishListUseCase,
     private val addToCartUseCase: AddProductToCartUseCase,
+    private val searchForProductsUseCase: SearchForProductsUseCase,
     @IODispatcher override val coroutineContext: CoroutineContext,
     savedStateHandle: SavedStateHandle,
 ) : BaseViewModel(),CoroutineScope {

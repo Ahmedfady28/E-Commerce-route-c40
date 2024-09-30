@@ -26,9 +26,10 @@ class ProductsOnlineDataSourceImpl @Inject constructor(
                 webServices.getProducts().data?.map { it?.toProduct() }
                     ?.filter {
                         it?.title?.contains(search, ignoreCase = true) == true
+                    } as List<Product>
 
-                    } as List<Product>?
             }
+
         return executeApi {
             val response = webServices.getProducts(categoryId, brandId, keyword, sortBy, search)
             response.data?.map { productDto ->
@@ -44,4 +45,9 @@ class ProductsOnlineDataSourceImpl @Inject constructor(
 //        }
 //    }
     }
+
+//    override fun getSpecificProduct(productId: String): Flow<ApiResult<Product?>>
+//    {
+//        TODO("Not yet implemented")
+//    }
 }
