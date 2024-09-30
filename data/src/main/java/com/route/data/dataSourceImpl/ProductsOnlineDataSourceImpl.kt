@@ -18,20 +18,30 @@ class ProductsOnlineDataSourceImpl @Inject constructor(
         keyword: String?,
         sortBy: String?,
         search: String?
-    ): Flow<ApiResult<List<Product>?>> {
+    ): Flow<ApiResult<List<Product>?>>
+    {
 
+        if (search != null)
+            return executeApi {
+                webServices.getProducts().data?.map { it?.toProduct() }
+                    ?.filter {
+                        it?.title?.contains(search, ignoreCase = true) == true
+
+                    } as List<Product>?
+            }
         return executeApi {
             val response = webServices.getProducts(categoryId, brandId, keyword, sortBy, search)
             response.data?.map { productDto ->
                 productDto?.toProduct() ?: Product()
             }
         }
-    }
 
-    override fun getSpecificProduct(productId: String): Flow<ApiResult<Product?>> {
-        return executeApi {
-            val response = webServices.getSpecificProduct(productId)
-            response.data?.toProduct()
-        }
+
+//    override fun getSpecificProduct(productId: String): Flow<ApiResult<Product?>> {
+//        return executeApi {
+//            val response = webServices.getSpecificProduct(productId)
+//            response.data?.toProduct()
+//        }
+//    }
     }
 }
