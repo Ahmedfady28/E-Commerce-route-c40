@@ -2,7 +2,6 @@ package com.example.e_commerce_route_c40.ui.fragments.product
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.viewModelScope
 import com.example.e_commerce_route_c40.base.BaseViewModel
 import com.route.data.api.interceptor.IODispatcher
 import com.route.domain.model.Brand
@@ -10,7 +9,6 @@ import com.route.domain.model.Product
 import com.route.domain.model.SubCategory
 import com.route.domain.usecase.cart.AddProductToCartUseCase
 import com.route.domain.usecase.product.GetProductsUseCase
-import com.route.domain.usecase.product.SearchForProductsUseCase
 import com.route.domain.usecase.wishList.AddProductToWishListUseCase
 import com.route.domain.usecase.wishList.RemoveProductFromWishListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -25,7 +23,6 @@ class ProductViewModel @Inject constructor(
     private val addToWishListUseCase: AddProductToWishListUseCase,
     private val removeProductFromWishListUseCase: RemoveProductFromWishListUseCase,
     private val addToCartUseCase: AddProductToCartUseCase,
-    private val searchForProductsUseCase: SearchForProductsUseCase,
     @IODispatcher override val coroutineContext: CoroutineContext,
     savedStateHandle: SavedStateHandle,
 ) : BaseViewModel(),CoroutineScope {
@@ -137,14 +134,14 @@ class ProductViewModel @Inject constructor(
 
     }
 
-    fun searchProducts(query: String){
-        viewModelScope.launch {
-            productsUseCase.invoke(search = query)
-                .collect { res ->
-                    handleCollectScope(res) { dataList ->
-                        productsLiveData.postValue(dataList)
-                    }
-                }
-        }
+    fun searchProducts(query: String?): List<Product>? {
+        return productsLiveData.value?.filter { product ->
+            product.title?.contains(query.toString(), ignoreCase = true) == true ||
+                    product.brand?.name?.contains(query.toString(), ignoreCase = true) == true ||
+                    product.category?.name?.contains(query.toString(), ignoreCase = true) == true
+        }?.toList()
+
+
     }
+
 }

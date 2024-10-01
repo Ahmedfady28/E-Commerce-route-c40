@@ -2,10 +2,7 @@ package com.example.e_commerce_route_c40.ui.fragments.product
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
-import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.e_commerce_route_c40.R
@@ -38,15 +35,11 @@ class ProductsFragment : BaseFragment<FragmentProductBinding, ProductViewModel>(
 
     private fun setupSearchBar() {
         binding.etSearch.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener{
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                if (!query.isNullOrEmpty()) {
-                        viewModel.searchProducts(query)
-                }
-                return true
-            }
+            override fun onQueryTextSubmit(query: String?): Boolean = false
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                return false
+                viewModel.searchProducts(newText)?.let { productsAdaptor.changeData(it) }
+                return true
             }
 
         })
