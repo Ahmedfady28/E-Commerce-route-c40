@@ -9,7 +9,7 @@ import com.example.e_commerce_route_c40.databinding.ItemProductBinding
 import com.route.domain.model.Product
 
 class ProductsAdaptor :
-    BaseAdapter<Product, ItemProductBinding>() {
+    BaseAdapter<Product, ItemProductBinding>(R.anim.full_down) {
 
 
     override fun getBinding(parent: ViewGroup, viewType: Int): ItemProductBinding {
