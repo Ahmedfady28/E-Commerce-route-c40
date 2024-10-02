@@ -16,9 +16,11 @@ class ProductsRepositoryImpl @Inject constructor(
         brandId: String?,
         keyword: String?,
         sortBy: String?,
+        page: Int?,
+        limit: Int?
     ): Flow<ApiResult<List<Product>?>> {
         Log.e("ProductsRepositoryImpl categoryId", categoryId.toString())
-        return onlineDataSource.getProducts(categoryId, brandId, keyword, sortBy)
+        return onlineDataSource.getProducts(categoryId, brandId, keyword, sortBy, page, limit)
     }
 
     override fun getSpecificProduct(productId: String): Flow<ApiResult<Product?>> {

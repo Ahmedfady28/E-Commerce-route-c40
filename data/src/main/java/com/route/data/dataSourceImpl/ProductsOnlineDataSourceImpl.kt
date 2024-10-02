@@ -17,10 +17,12 @@ class ProductsOnlineDataSourceImpl @Inject constructor(
         brandId: String?,
         keyword: String?,
         sortBy: String?,
+        page: Int?,
+        limit: Int?
     ): Flow<ApiResult<List<Product>?>>
     {
         return executeApi {
-            val response = webServices.getProducts(categoryId, brandId, keyword, sortBy)
+            val response = webServices.getProducts(categoryId, brandId, keyword, sortBy, page, limit)
             response.data?.map { productDto ->
                 productDto?.toProduct() ?: Product()
             }

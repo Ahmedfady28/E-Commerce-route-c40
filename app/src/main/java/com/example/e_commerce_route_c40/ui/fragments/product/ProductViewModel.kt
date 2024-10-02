@@ -3,6 +3,7 @@ package com.example.e_commerce_route_c40.ui.fragments.product
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import com.example.e_commerce_route_c40.base.BaseViewModel
+import com.example.e_commerce_route_c40.base.UIMessage
 import com.route.data.api.interceptor.IODispatcher
 import com.route.domain.model.Brand
 import com.route.domain.model.Product
@@ -17,6 +18,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
+const val PAGE_LIMIT = 10
 @HiltViewModel
 class ProductViewModel @Inject constructor(
     private val productsUseCase: GetProductsUseCase,
@@ -45,26 +47,38 @@ class ProductViewModel @Inject constructor(
 
     }
 
-    private fun getAllProducts() {
+    var page = 1
+    var isLastPage = false
+    private val productList = mutableListOf<Product>()
+
+    fun getAllProducts() {
+        if (isLastPage) return
         launch {
-            productsUseCase.invoke()
+            productsUseCase.invoke(page = page, limit = PAGE_LIMIT)
                 .collect { res ->
                     handleCollectScope(res) { dataList ->
-                        productsLiveData.postValue(dataList)
+                        if (dataList != null) {
+                            if (dataList.size < PAGE_LIMIT) {
+                                isLastPage = true
+                            } else {
+                                page++
+                            }
+                        }
+                        if (dataList != null) {
+                            productList.addAll(dataList)
+                        }
+                        productsLiveData.postValue(productList)
                     }
                 }
         }
     }
+
 
     fun getProducts() {
         if (brand == null) {//&& subCategory== null
             getAllProducts()
             return
         }
-//        if(subCategory != null) {
-//            getProductsByCategory()
-//            return
-//        }
         if (brand != null) {
             getProductsByBrand(brand)
             return
@@ -108,7 +122,9 @@ class ProductViewModel @Inject constructor(
         if (product == null) return
         launch {
             addToCartUseCase.invoke(product).collect { result ->
-                handleCollectScope(result) {}
+                handleCollectScope(result) {
+
+                }
             }
         }
     }

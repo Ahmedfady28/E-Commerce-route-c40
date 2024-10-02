@@ -60,7 +60,7 @@ open class BaseViewModel:ViewModel() {
         uiMessage.postValue(UIMessage(
             showLoading = true,
             messageId = messageId,
-            message = message
+            message = message,
         ))
     }
 

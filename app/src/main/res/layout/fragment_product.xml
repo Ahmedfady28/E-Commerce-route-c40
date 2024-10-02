@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="vm"
+            type="com.example.e_commerce_route_c40.ui.fragments.product.ProductViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

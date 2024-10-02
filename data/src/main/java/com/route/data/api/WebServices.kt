@@ -42,6 +42,8 @@ interface WebServices {
         @Query("brand") brandId: String? = null,
         @Query("keyword") keyword: String? = null,
         @Query("sort") sortBy: String? = null,
+        @Query("page") page: Int? = null,
+        @Query("limit") limit: Int? = null,
     ): ProductsResponse
 
     @POST("api/v1/auth/signin")

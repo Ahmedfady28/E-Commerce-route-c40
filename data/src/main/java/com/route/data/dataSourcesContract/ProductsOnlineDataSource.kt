@@ -10,6 +10,8 @@ interface ProductsOnlineDataSource {
         brandId: String? = null,
         keyword: String? = null,
         sortBy: String? = null,
+        page: Int? = null,
+        limit: Int? = null
     ): Flow<ApiResult<List<Product>?>>
 
     fun getSpecificProduct(

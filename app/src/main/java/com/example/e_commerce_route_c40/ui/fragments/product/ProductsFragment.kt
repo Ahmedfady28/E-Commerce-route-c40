@@ -27,9 +27,9 @@ class ProductsFragment : BaseFragment<FragmentProductBinding, ProductViewModel>(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initViews()
-        observeLivedata()
         viewModel.getProducts()
+        observeLivedata()
+        initViews()
         setupSearchBar()
     }
 
@@ -52,11 +52,9 @@ class ProductsFragment : BaseFragment<FragmentProductBinding, ProductViewModel>(
             }
             updateUiProducts()
         }
-        viewModel.productWishListUpdatePosition.observe(viewLifecycleOwner){pos->
+        viewModel.productWishListUpdatePosition.observe(viewLifecycleOwner){ pos->
             productsAdaptor.notifyItemChanged(pos)
         }
-
-
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -78,15 +76,18 @@ class ProductsFragment : BaseFragment<FragmentProductBinding, ProductViewModel>(
             }
         }
 
+        productsAdaptor.onReachedBottom = {
+            viewModel.getAllProducts()
+        }
+
         productsAdaptor.onAddClickListener =
             ProductsAdaptor.OnAddedClickListener { product, _ ->
                         viewModel.addProductToCart(product)
                 }
 
-
-
         binding.rvProduct.adapter = productsAdaptor
     }
+
     private fun updateUiProducts() {
         if (viewModel.productsLiveData.value.isNullOrEmpty()) {
             binding.apply {
@@ -98,9 +99,7 @@ class ProductsFragment : BaseFragment<FragmentProductBinding, ProductViewModel>(
                 rvProduct.visibility = View.VISIBLE
                 layoutPlaceHolder.viewStub?.visibility = View.GONE
             }
-
         }
-
     }
 
 

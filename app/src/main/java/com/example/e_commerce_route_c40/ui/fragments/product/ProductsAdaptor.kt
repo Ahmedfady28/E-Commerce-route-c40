@@ -43,6 +43,12 @@ class ProductsAdaptor :
         binding.root.setOnClickListener {
             onProductClickListener?.onItemClick(item, position)
         }
+
+        if (position == itemCount - 1){
+            onReachedBottom?.let {
+                it()
+            }
+        }
     }
 
 
@@ -59,4 +65,6 @@ class ProductsAdaptor :
     {
         fun onItemClick(product: Product?, position: Int)
     }
+
+    var onReachedBottom: (() -> Unit)? = null
 }
