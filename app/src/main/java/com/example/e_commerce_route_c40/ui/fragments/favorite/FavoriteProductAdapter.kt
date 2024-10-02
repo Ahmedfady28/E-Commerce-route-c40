@@ -3,11 +3,13 @@ package com.example.e_commerce_route_c40.ui.fragments.favorite
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
+import com.example.e_commerce_route_c40.R
 import com.example.e_commerce_route_c40.base.BaseAdapter
 import com.example.e_commerce_route_c40.databinding.ItemProductFavoriteBinding
 import com.route.domain.model.Product
 
-class FavoriteProductAdapter : BaseAdapter<Product, ItemProductFavoriteBinding>() {
+class FavoriteProductAdapter :
+    BaseAdapter<Product, ItemProductFavoriteBinding>(R.anim.slide_in_left) {
 
     var onAddToCartClickListener: OnItemClickListener? = null
 

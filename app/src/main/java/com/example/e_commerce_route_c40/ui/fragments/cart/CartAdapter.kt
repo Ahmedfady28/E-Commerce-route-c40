@@ -8,7 +8,7 @@ import com.example.e_commerce_route_c40.base.BaseAdapter
 import com.example.e_commerce_route_c40.databinding.ItemCartBinding
 import com.route.domain.model.ProductItemCart
 
-class CartAdapter : BaseAdapter<ProductItemCart, ItemCartBinding>() {
+class CartAdapter : BaseAdapter<ProductItemCart, ItemCartBinding>(R.anim.slide_in_right) {
 
     var onIncrementClickListener: OnItemClickListener? = null
     var onDecrementClickListener: OnItemClickListener? = null

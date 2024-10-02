@@ -1,12 +1,12 @@
 package com.example.e_commerce_route_c40.ui
 
-import com.example.e_commerce_route_c40.adapters.HomeCategoriesAdapter
 import com.example.e_commerce_route_c40.ui.fragments.cart.CartAdapter
 import com.example.e_commerce_route_c40.ui.fragments.category.CategoriesAdapter
 import com.example.e_commerce_route_c40.ui.fragments.category.SubCategoriesAdapter
 import com.example.e_commerce_route_c40.ui.fragments.favorite.FavoriteProductAdapter
-import com.example.e_commerce_route_c40.ui.fragments.home.AdapterMostSeller
-import com.example.e_commerce_route_c40.ui.fragments.home.BrandAdapter
+import com.example.e_commerce_route_c40.ui.fragments.home.adaptors.AdapterMostSeller
+import com.example.e_commerce_route_c40.ui.fragments.home.adaptors.BrandAdapter
+import com.example.e_commerce_route_c40.ui.fragments.home.adaptors.HomeCategoriesAdapter
 import com.example.e_commerce_route_c40.ui.fragments.product.ProductsAdaptor
 import dagger.Module
 import dagger.Provides

@@ -3,11 +3,12 @@ package com.example.e_commerce_route_c40.base
 
 import android.annotation.SuppressLint
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 
 
-abstract class BaseAdapter<TypeItemList, VB : ViewBinding> :
+abstract class BaseAdapter<TypeItemList, VB : ViewBinding>(private val animationEffect: Int? = null) :
     RecyclerView.Adapter<BaseAdapter<TypeItemList, VB >.ViewHolder>() {
     private var items: MutableList<TypeItemList>? = null
 
@@ -25,6 +26,9 @@ abstract class BaseAdapter<TypeItemList, VB : ViewBinding> :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items?.get(position)
         bindData(holder.binding, item!!, position)
+        if (animationEffect != null)
+            holder.itemView.animation =
+                AnimationUtils.loadAnimation(holder.itemView.context, animationEffect)
     }
 
     override fun getItemCount(): Int = items?.size ?: 0

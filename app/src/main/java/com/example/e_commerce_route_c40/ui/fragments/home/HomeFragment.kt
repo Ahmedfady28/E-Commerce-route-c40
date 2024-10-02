@@ -5,9 +5,11 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.example.e_commerce_route_c40.R
-import com.example.e_commerce_route_c40.adapters.HomeCategoriesAdapter
 import com.example.e_commerce_route_c40.base.BaseFragment
 import com.example.e_commerce_route_c40.databinding.FragmentHomeBinding
+import com.example.e_commerce_route_c40.ui.fragments.home.adaptors.AdapterMostSeller
+import com.example.e_commerce_route_c40.ui.fragments.home.adaptors.BrandAdapter
+import com.example.e_commerce_route_c40.ui.fragments.home.adaptors.HomeCategoriesAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -119,9 +121,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                 val action = HomeFragmentDirections.actionHomeFragmentToCartFragment()
                 Navigation.findNavController(binding.root).navigate(action)
             }
-
-
-
         }
 
     }

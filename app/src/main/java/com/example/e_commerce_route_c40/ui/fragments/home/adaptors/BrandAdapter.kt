@@ -1,15 +1,16 @@
-package com.example.e_commerce_route_c40.ui.fragments.home
+package com.example.e_commerce_route_c40.ui.fragments.home.adaptors
 
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
+import com.example.e_commerce_route_c40.R
 import com.example.e_commerce_route_c40.base.BaseAdapter
 import com.example.e_commerce_route_c40.databinding.ItemBrandBinding
 import com.route.domain.model.Brand
 
 
-class BrandAdapter : BaseAdapter<Brand, ItemBrandBinding>()
+class BrandAdapter : BaseAdapter<Brand, ItemBrandBinding>(R.anim.slide_in_left)
 {
     var onBrandClickListener: OnItemClickListener? = null
 

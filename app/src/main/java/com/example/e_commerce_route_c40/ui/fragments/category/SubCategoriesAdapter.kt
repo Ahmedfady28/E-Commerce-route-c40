@@ -8,7 +8,8 @@ import com.example.e_commerce_route_c40.base.BaseAdapter
 import com.example.e_commerce_route_c40.databinding.ItemSubCategoryInCategoriesBinding
 import com.route.domain.model.SubCategory
 
-class SubCategoriesAdapter : BaseAdapter<SubCategory, ItemSubCategoryInCategoriesBinding>() {
+class SubCategoriesAdapter :
+    BaseAdapter<SubCategory, ItemSubCategoryInCategoriesBinding>(R.anim.full_down) {
 
     var onItemClickListener: OnItemClickListener? = null
 

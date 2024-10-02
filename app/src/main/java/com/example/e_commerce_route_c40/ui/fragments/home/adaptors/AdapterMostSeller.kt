@@ -1,4 +1,4 @@
-package com.example.e_commerce_route_c40.ui.fragments.home
+package com.example.e_commerce_route_c40.ui.fragments.home.adaptors
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,7 +9,7 @@ import com.example.e_commerce_route_c40.databinding.ItemHomeMostSellerBinding
 import com.route.domain.model.Product
 
 
-class AdapterMostSeller : BaseAdapter<Product, ItemHomeMostSellerBinding>() {
+class AdapterMostSeller : BaseAdapter<Product, ItemHomeMostSellerBinding>(R.anim.slide_in_left) {
 
 
     var onProductClickListener: OnItemClickListener? = null

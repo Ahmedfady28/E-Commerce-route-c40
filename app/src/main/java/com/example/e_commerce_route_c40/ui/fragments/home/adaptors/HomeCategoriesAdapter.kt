@@ -1,14 +1,15 @@
-package com.example.e_commerce_route_c40.adapters
+package com.example.e_commerce_route_c40.ui.fragments.home.adaptors
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
+import com.example.e_commerce_route_c40.R
 import com.example.e_commerce_route_c40.base.BaseAdapter
 import com.example.e_commerce_route_c40.databinding.ItemCategoryBinding
 import com.route.domain.model.Category
 
 
-class HomeCategoriesAdapter : BaseAdapter<Category, ItemCategoryBinding>()
+class HomeCategoriesAdapter : BaseAdapter<Category, ItemCategoryBinding>(R.anim.full_down)
 {
     var onItemClickListener: OnItemClickListener? = null
 
