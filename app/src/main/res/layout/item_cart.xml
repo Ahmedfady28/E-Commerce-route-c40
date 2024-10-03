@@ -121,7 +121,7 @@
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:background="@android:color/transparent"
-                        android:src="@drawable/ic_subtract_circle_minus_remove" />
+                        android:src="@drawable/ic_minus" />
 
                     <!-- Quantity Text -->
                     <TextView
@@ -141,7 +141,7 @@
                         android:layout_height="32dp"
                         android:background="@android:color/transparent"
                         android:contentDescription="Increase quantity"
-                        android:src="@drawable/icon_pluscircle" />
+                        android:src="@drawable/ic_plus" />
                 </LinearLayout>
             </LinearLayout>
 

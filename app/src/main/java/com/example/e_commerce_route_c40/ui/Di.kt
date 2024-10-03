@@ -8,6 +8,7 @@ import com.example.e_commerce_route_c40.ui.fragments.home.adaptors.AdapterMostSe
 import com.example.e_commerce_route_c40.ui.fragments.home.adaptors.BrandAdapter
 import com.example.e_commerce_route_c40.ui.fragments.home.adaptors.HomeCategoriesAdapter
 import com.example.e_commerce_route_c40.ui.fragments.product.ProductsAdaptor
+import com.example.e_commerce_route_c40.ui.fragments.productDetails.ImgsAdaptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -49,4 +50,8 @@ class Di {
     @Provides
     @FragmentScoped
     fun provideFavoriteProductAdapter(): FavoriteProductAdapter = FavoriteProductAdapter()
+
+    @Provides
+    @FragmentScoped
+    fun provideProductDetailsAdaptor(): ImgsAdaptor = ImgsAdaptor()
 }

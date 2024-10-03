@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.e_commerce_route_c40.base.BaseViewModel
 import com.route.domain.model.ApiResult
 import com.route.domain.model.Product
+import com.route.domain.usecase.cart.AddProductToCartUseCase
 import com.route.domain.usecase.product.GetSpecificProductUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -16,6 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ProductDetailsViewModel @Inject constructor(
     private val getSpecificProductUseCase: GetSpecificProductUseCase,
+    private val addProductToCartUseCase: AddProductToCartUseCase,
     savedStateHandle: SavedStateHandle,
 ): BaseViewModel() {
 
@@ -32,9 +34,19 @@ class ProductDetailsViewModel @Inject constructor(
                                 getSpecificProduct()
                             }
                             is ApiResult.Loading -> handleLoading(result)
-                            is ApiResult.Success -> getSpecificProductUseCase.invoke(productId = productId)
+                            is ApiResult.Success -> productLiveData.postValue(result.data)
                         }
                     }
-            }
         }
     }
+
+    fun addToCart(product: Product?) {
+        viewModelScope.launch(Dispatchers.IO) {
+            addProductToCartUseCase.invoke(productLiveData.value!!)
+                .flowOn(Dispatchers.IO)
+                .collect { result ->
+                    handleCollectScope(result) {}
+                }
+        }
+    }
+}
