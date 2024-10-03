@@ -39,6 +39,33 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         viewModel.getCategoryList()
         viewModel.getBrandsList()
         viewModel.getMostSellerList()
+        setupSearchBar()
+    }
+
+    private fun setupSearchBar()
+    {
+        binding.etSearch.setOnQueryTextListener(object :
+            androidx.appcompat.widget.SearchView.OnQueryTextListener
+        {
+            override fun onQueryTextSubmit(query: String?): Boolean
+            {
+                if (query.isNullOrEmpty())
+                {
+                    viewModel.getMostSellerList()
+
+                }
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean
+            {
+                viewModel.searchHomeProducts(newText)?.let {
+                    adapterMostSeller.changeData(it)
+                }
+                return true
+            }
+
+        })
     }
 
 
@@ -64,7 +91,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         adapterCategories.onItemClickListener =
                 HomeCategoriesAdapter.OnItemClickListener { category, _ ->
                     val action =
-                            HomeFragmentDirections.actionHomeFragmentToCategoryFragment(category)
+                            HomeFragmentDirections.actionHomeFragmentToCategoryFragment()
                     Navigation.findNavController(binding.root).navigate(action)
 
                 }

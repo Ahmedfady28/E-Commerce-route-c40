@@ -30,16 +30,18 @@
             app:layout_constraintStart_toStartOf="@+id/iv_logo"
             app:layout_constraintTop_toBottomOf="@id/iv_logo">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <androidx.appcompat.widget.SearchView
                 android:id="@+id/et_search"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_search"
                 android:drawablePadding="4dp"
+                android:hint="@string/search_hint"
+                android:imeOptions="actionSearch"
                 android:inputType="text"
                 android:maxLines="1"
-                android:textSize="12sp"
-                android:hint="@string/search_hint" />
+                android:queryHint="Search products..."
+                android:textSize="12sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatImageView

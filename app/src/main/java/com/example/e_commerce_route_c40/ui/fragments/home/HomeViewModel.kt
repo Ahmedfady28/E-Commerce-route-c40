@@ -120,4 +120,15 @@ class HomeViewModel @Inject constructor(
             }
         }
     }
+
+    fun searchHomeProducts(query: String?): List<Product>?
+    {
+        return productsLiveData.value?.filter { product ->
+            product.title?.contains(query.toString(), ignoreCase = true) == true ||
+                    product.brand?.name?.contains(query.toString(), ignoreCase = true) == true ||
+                    product.category?.name?.contains(query.toString(), ignoreCase = true) == true
+        }?.toList()
+
+
+    }
 }
