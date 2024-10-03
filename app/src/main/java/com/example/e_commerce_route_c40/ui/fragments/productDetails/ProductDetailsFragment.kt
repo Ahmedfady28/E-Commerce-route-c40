@@ -64,7 +64,7 @@ class ProductDetailsFragment :
 
             binding.apply {
                 tvTitle.text = product?.title
-                tvPrice.text = buildString {
+                tvPriceProduct.text = buildString {
                     append(product?.price.toString())
                     append(" $")
                 }

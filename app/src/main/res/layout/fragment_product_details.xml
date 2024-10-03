@@ -13,7 +13,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             tools:context=".ui.fragments.productDetails.ProductDetailsFragment">
 
             <androidx.recyclerview.widget.RecyclerView
@@ -23,7 +23,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/img" />
+                tools:listitem="@layout/product_details_image_item" />
 
             <ImageView
                 android:id="@+id/ic_favorite_blue"
@@ -36,7 +36,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/Tv_Title"
+                android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -44,12 +44,12 @@
                 android:textColor="#06004F"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@id/ProductImage"
-                app:layout_constraintTop_toBottomOf="@id/ProductImage"
+                app:layout_constraintStart_toStartOf="@id/ProductImages"
+                app:layout_constraintTop_toBottomOf="@id/ProductImages"
                 tools:text="Nike Air Jordon" />
 
             <TextView
-                android:id="@+id/Tv_Price"
+                android:id="@+id/tv_price_product"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
@@ -57,8 +57,8 @@
                 android:textColor="@color/blue"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@id/ProductImage"
-                app:layout_constraintTop_toBottomOf="@id/ProductImage"
+                app:layout_constraintEnd_toEndOf="@id/ProductImages"
+                app:layout_constraintTop_toBottomOf="@id/ProductImages"
                 tools:text="EGP 3,500" />
 
             <TextView
@@ -70,8 +70,8 @@
                 android:fontFamily="@font/poppins_medium"
                 android:textColor="#06004F"
                 android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="@id/ProductImage"
-                app:layout_constraintTop_toBottomOf="@id/Tv_Title"
+                app:layout_constraintStart_toStartOf="@id/ProductImages"
+                app:layout_constraintTop_toBottomOf="@id/tv_title"
                 tools:text="3,230 Sold" />
 
             <ImageView
@@ -81,11 +81,11 @@
                 android:layout_marginTop="19dp"
                 android:layout_marginEnd="16dp"
                 android:src="@drawable/baseline_star_24"
-                app:layout_constraintStart_toEndOf="@id/Tv_Title"
-                app:layout_constraintTop_toBottomOf="@id/Tv_Title" />
+                app:layout_constraintStart_toEndOf="@id/tv_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
             <TextView
-                android:id="@+id/Tv_Rating"
+                android:id="@+id/tv_rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
@@ -104,7 +104,7 @@
                 android:gravity="center"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Tv_Price">
+                app:layout_constraintTop_toBottomOf="@+id/tv_price_product">
 
                 <!-- Delete Button -->
                 <ImageButton
@@ -131,7 +131,7 @@
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:background="@android:color/transparent"
-                        android:src="@drawable/ic_subtract_circle_minus_remove" />
+                        android:src="@drawable/ic_minus" />
 
                     <!-- Quantity Text -->
                     <TextView
@@ -151,7 +151,7 @@
                         android:layout_height="32dp"
                         android:background="@android:color/transparent"
                         android:contentDescription="Increase quantity"
-                        android:src="@drawable/icon_pluscircle" />
+                        android:src="@drawable/ic_plus" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -165,11 +165,11 @@
                 android:textColor="#06004F"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@id/ProductImage"
+                app:layout_constraintStart_toStartOf="@id/ProductImages"
                 app:layout_constraintTop_toBottomOf="@id/Tv_How_Many_Sold" />
 
             <TextView
-                android:id="@+id/Tv_Description_Text"
+                android:id="@+id/tv_description_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -196,8 +196,8 @@
                 android:text="@string/read_more"
                 android:textColor="@color/blue"
                 android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="@id/Tv_Description_Text"
-                app:layout_constraintEnd_toEndOf="@id/Tv_Description_Text" />
+                app:layout_constraintBottom_toBottomOf="@id/tv_description_details"
+                app:layout_constraintEnd_toEndOf="@id/tv_description_details" />
 
             <TextView
                 android:id="@+id/Tv_Size"
@@ -209,8 +209,8 @@
                 android:textColor="#06004F"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@id/ProductImage"
-                app:layout_constraintTop_toBottomOf="@id/Tv_Description_Text" />
+                app:layout_constraintStart_toStartOf="@id/ProductImages"
+                app:layout_constraintTop_toBottomOf="@id/tv_description_details" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/Size_Button_1"
@@ -317,7 +317,7 @@
                 android:textColor="#06004F"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@id/ProductImage"
+                app:layout_constraintStart_toStartOf="@id/ProductImages"
                 app:layout_constraintTop_toBottomOf="@id/Size_Button_1" />
 
             <androidx.cardview.widget.CardView
@@ -386,7 +386,7 @@
                 android:textColor="#9906004F"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@id/ProductImage"
+                app:layout_constraintStart_toStartOf="@id/ProductImages"
                 app:layout_constraintTop_toBottomOf="@id/Color_Button_Black" />
 
             <TextView
@@ -410,16 +410,11 @@
                 android:backgroundTint="@color/blue2"
                 android:text="Add To Cart"
                 android:textSize="20sp"
+                android:drawableStart="@drawable/baseline_add_shopping_cart_24"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/Tv_Total_Price" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/baseline_add_shopping_cart_24"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Color_Button_Blue"
-                tools:layout_editor_absoluteX="172dp" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>
