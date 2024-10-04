@@ -96,11 +96,29 @@ class ProductViewModel @Inject constructor(
         }
     }
     private fun getProductsByBrand(brand: Brand) {
+//        launch {
+//            productsUseCase.invoke(brandId = brand.id)
+//                .collect { res ->
+//                    handleCollectScope(res) { dataList ->
+//                        productsLiveData.postValue(dataList)
+//                    }
+//                }
+//        }
         launch {
-            productsUseCase.invoke(brandId = brand.id)
+            productsUseCase.invoke(page = page, limit = PAGE_LIMIT, brandId = brand.id)
                 .collect { res ->
                     handleCollectScope(res) { dataList ->
-                        productsLiveData.postValue(dataList)
+                        if (dataList != null) {
+                            if (dataList.size < PAGE_LIMIT) {
+                                isLastPage = true
+                            } else {
+                                page++
+                            }
+                        }
+                        if (dataList != null) {
+                            productList.addAll(dataList)
+                        }
+                        productsLiveData.postValue(productList)
                     }
                 }
         }
