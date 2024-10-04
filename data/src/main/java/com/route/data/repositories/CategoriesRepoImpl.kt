@@ -10,13 +10,21 @@ import javax.inject.Inject
 
 class CategoriesRepoImpl @Inject constructor(
     private val onlineDataSource: CategoriesOnlineDataSource
-):CategoriesRepository {
+) : CategoriesRepository
+{
 
-    override fun getCategories(): Flow<ApiResult<List<Category>?>> {
+    override fun getCategories(): Flow<ApiResult<List<Category>?>>
+    {
         return onlineDataSource.getCategories()
     }
 
-    override fun getSubCategories(categoryId: String): Flow<ApiResult<List<SubCategory>?>> {
+    override fun getSubCategories(categoryId: String): Flow<ApiResult<List<SubCategory>?>>
+    {
         return onlineDataSource.getSubCategories(categoryId)
+    }
+
+    override fun getSpecificCategory(categoryId: String): Flow<ApiResult<Category?>>
+    {
+        return onlineDataSource.getSpecificCategory(categoryId)
     }
 }

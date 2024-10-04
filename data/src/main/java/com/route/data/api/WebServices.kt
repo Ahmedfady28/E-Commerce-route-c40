@@ -7,6 +7,7 @@ import com.route.data.api.model.request.UpdateCartRequest
 import com.route.data.api.model.response.BaseResponse
 import com.route.data.api.model.response.BrandDto
 import com.route.data.api.model.response.CategoriesResponse
+import com.route.data.api.model.response.CategoryDto
 import com.route.data.api.model.response.LoginRequest
 import com.route.data.api.model.response.LoginResponse
 import com.route.data.api.model.response.ProductDto
@@ -90,6 +91,11 @@ interface WebServices {
     suspend fun getSpecificProduct(
         @Path("id") id: String
     ): BaseResponse<ProductDto>
+
+    @GET("api/v1/categories/{id}")
+    suspend fun getSpecificCategory(
+        @Path("id") id: String
+    ): BaseResponse<CategoryDto>
 
 
     @DELETE("api/v1/cart")

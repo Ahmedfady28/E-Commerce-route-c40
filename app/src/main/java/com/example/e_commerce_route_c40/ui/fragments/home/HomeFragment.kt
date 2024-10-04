@@ -64,7 +64,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         adapterCategories.onItemClickListener =
                 HomeCategoriesAdapter.OnItemClickListener { category, _ ->
                     val action =
-                            HomeFragmentDirections.actionHomeFragmentToCategoryFragment(category)
+                            HomeFragmentDirections.actionHomeFragmentToCategoryFragment(
+                                category?.id ?: ""
+                            )
                     Navigation.findNavController(binding.root).navigate(action)
 
                 }
@@ -109,7 +111,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             rvHomeAppliance.adapter = adapterMostSeller
 
             tvViewAllCategories.setOnClickListener {
-                val action = HomeFragmentDirections.actionHomeFragmentToCategoryFragment()
+                val action = HomeFragmentDirections.actionGlobalToProductsScreen()
                 Navigation.findNavController(binding.root).navigate(action)
             }
             tvViewAllBrands.setOnClickListener {

@@ -30,12 +30,16 @@ class CategoryFragment : BaseFragment<FragmentCategoryBinding,CategoriesViewMode
         initViews()
         observeLivedata()
         viewModel.getCategories()
+        viewModel.getSpecificCategory()
+
     }
 
-    private fun observeLivedata() {
-        viewModel.categoriesLiveData.observe(viewLifecycleOwner){categories->
+    private fun observeLivedata()
+    {
+        viewModel.categoriesLiveData.observe(viewLifecycleOwner) { categories ->
             categories?.let {
                 categoriesAdapter.changeData(categories)
+
             }
         }
         viewModel.subCategoriesLiveData.observe(viewLifecycleOwner) { subCategories ->
@@ -44,7 +48,29 @@ class CategoryFragment : BaseFragment<FragmentCategoryBinding,CategoriesViewMode
             }
             updateUiSubCategories()
         }
+        viewModel.specificCategoryLiveData.observe(viewLifecycleOwner) { specificCategory ->
+
+            specificCategory?.let {
+//                val position = categoriesAdapter.currentList.indexOfLast { category ->
+//                    category.id == specificCategory.id
+//                }
+//                if (position != -1) {
+//                    categoriesAdapter.updateSelectedPosition(position)
+//                }
+
+                categoriesAdapter.changeData(listOf(specificCategory))
+                binding.rvCategory.scrollToPosition(0)
+
+                viewModel.getSubCategories(specificCategory.id ?: "")
+                binding.rvSubCategory.scrollToPosition(0)
+            }
+
+
+        }
+
+
     }
+
     @Inject
      lateinit var categoriesAdapter:CategoriesAdapter
     @Inject

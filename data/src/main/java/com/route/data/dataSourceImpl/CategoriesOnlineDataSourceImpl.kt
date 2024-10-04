@@ -30,4 +30,12 @@ class CategoriesOnlineDataSourceImpl @Inject constructor(
                 }
         }
     }
+
+    override fun getSpecificCategory(categoryId: String): Flow<ApiResult<Category?>>
+    {
+        return executeApi {
+            val response = webServices.getSpecificCategory(categoryId)
+            response.data?.toCategory()
+        }
+    }
 }
