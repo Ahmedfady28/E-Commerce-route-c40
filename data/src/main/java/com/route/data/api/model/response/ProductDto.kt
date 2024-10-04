@@ -57,7 +57,7 @@ data class ProductDto(
     val count: Int? = null
 ) {
 
-  fun toProduct() : Product{
+	fun toProduct(favourite: Boolean = false): Product {
 		return Product(
 			sold = sold,
 			images = images,
@@ -76,7 +76,8 @@ data class ProductDto(
 			brand = brand?.toBrand(),
 			slug = slug,
             updatedAt = updatedAt,
-            count = count
+			count = count,
+			isLiked = favourite
 		)
 	}
 }

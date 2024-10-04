@@ -3,7 +3,7 @@ package com.example.e_commerce_route_c40.ui.fragments.product
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import com.example.e_commerce_route_c40.base.BaseViewModel
-import com.example.e_commerce_route_c40.base.UIMessage
+import com.example.e_commerce_route_c40.util.PAGE_LIMIT
 import com.route.data.api.interceptor.IODispatcher
 import com.route.domain.model.Brand
 import com.route.domain.model.Product
@@ -18,7 +18,6 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
-const val PAGE_LIMIT = 10
 @HiltViewModel
 class ProductViewModel @Inject constructor(
     private val productsUseCase: GetProductsUseCase,
@@ -47,8 +46,8 @@ class ProductViewModel @Inject constructor(
 
     }
 
-    var page = 1
-    var isLastPage = false
+    private var page = 1
+    private var isLastPage = false
     private val productList = mutableListOf<Product>()
 
     fun getAllProducts() {
@@ -96,14 +95,6 @@ class ProductViewModel @Inject constructor(
         }
     }
     private fun getProductsByBrand(brand: Brand) {
-//        launch {
-//            productsUseCase.invoke(brandId = brand.id)
-//                .collect { res ->
-//                    handleCollectScope(res) { dataList ->
-//                        productsLiveData.postValue(dataList)
-//                    }
-//                }
-//        }
         launch {
             productsUseCase.invoke(page = page, limit = PAGE_LIMIT, brandId = brand.id)
                 .collect { res ->

@@ -5,8 +5,8 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.google.gson.Gson
-import com.route.data.dataStore.UserDataStore
 import com.route.data.dataSourcesContract.AuthOfflineDataSource
+import com.route.data.dataStore.UserDataStore
 import com.route.domain.model.AuthData
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -18,7 +18,7 @@ class AuthOfflineDataSourceImpl @Inject constructor(
 ):
     AuthOfflineDataSource {
 
-    val loginPreferencesKey = stringPreferencesKey("user")
+    private val loginPreferencesKey = stringPreferencesKey("user")
 
     override suspend fun saveUser(response: AuthData) {
         userDataStore.edit {settings->
