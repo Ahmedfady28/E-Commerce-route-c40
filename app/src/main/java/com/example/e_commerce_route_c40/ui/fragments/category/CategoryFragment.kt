@@ -15,15 +15,11 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class CategoryFragment : BaseFragment<FragmentCategoryBinding,CategoriesViewModel>() {
 
-    override fun getLayoutId(): Int {
-        return R.layout.fragment_category
-    }
+    override fun getLayoutId(): Int = R.layout.fragment_category
 
     private val _viewModel :CategoriesViewModel by viewModels ()
 
-    override fun initViewModel(): CategoriesViewModel {
-     return _viewModel
-    }
+    override fun initViewModel(): CategoriesViewModel = _viewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -64,6 +60,7 @@ class CategoryFragment : BaseFragment<FragmentCategoryBinding,CategoriesViewMode
             }
 
         binding.apply {
+            categoriesAdapter.selectedPosition = viewModel.selectedPos
             rvCategory.adapter =categoriesAdapter
             rvSubCategory.adapter = subCategoriesAdapter
         }

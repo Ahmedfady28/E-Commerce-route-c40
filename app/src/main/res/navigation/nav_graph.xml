@@ -55,6 +55,10 @@
             android:defaultValue="@null"
             app:argType="com.route.domain.model.Category"
             app:nullable="true" />
+        <argument
+            android:name="SeletedPos"
+            android:defaultValue="0"
+            app:argType="integer" />
 
     </fragment>
     <fragment

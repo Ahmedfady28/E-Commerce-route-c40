@@ -62,9 +62,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     private fun initViews() {
 
         adapterCategories.onItemClickListener =
-                HomeCategoriesAdapter.OnItemClickListener { category, _ ->
+            HomeCategoriesAdapter.OnItemClickListener { category, pos ->
                     val action =
-                            HomeFragmentDirections.actionHomeFragmentToCategoryFragment(category)
+                        HomeFragmentDirections.actionHomeFragmentToCategoryFragment(category, pos)
                     Navigation.findNavController(binding.root).navigate(action)
 
                 }

@@ -11,7 +11,7 @@ import com.route.domain.model.Category
 
 class CategoriesAdapter : BaseAdapter<Category, ItemCategoryInCategoriesBinding>() {
 
-    private var selectedPosition = 0
+    var selectedPosition = 0
 
     var onItemClickListener: OnItemClickListener? = null
 
