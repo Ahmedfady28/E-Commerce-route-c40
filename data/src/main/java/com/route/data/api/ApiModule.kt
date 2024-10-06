@@ -45,7 +45,7 @@ object ApiModule {
         return OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
             .addInterceptor(authInterceptor)
-//            .cache(cache)
+            .cache(cache)
             .addNetworkInterceptor(cacheInterceptor)
             .addInterceptor(offlineCacheInterceptor)
             .build()

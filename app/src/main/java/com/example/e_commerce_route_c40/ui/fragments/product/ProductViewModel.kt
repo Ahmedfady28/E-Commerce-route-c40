@@ -57,14 +57,12 @@ class ProductViewModel @Inject constructor(
                 .collect { res ->
                     handleCollectScope(res) { dataList ->
                         if (dataList != null) {
+                            productList.addAll(dataList)
                             if (dataList.size < PAGE_LIMIT) {
                                 isLastPage = true
                             } else {
                                 page++
                             }
-                        }
-                        if (dataList != null) {
-                            productList.addAll(dataList)
                         }
                         productsLiveData.postValue(productList)
                     }
@@ -100,14 +98,12 @@ class ProductViewModel @Inject constructor(
                 .collect { res ->
                     handleCollectScope(res) { dataList ->
                         if (dataList != null) {
+                            productList.addAll(dataList)
                             if (dataList.size < PAGE_LIMIT) {
                                 isLastPage = true
                             } else {
                                 page++
                             }
-                        }
-                        if (dataList != null) {
-                            productList.addAll(dataList)
                         }
                         productsLiveData.postValue(productList)
                     }

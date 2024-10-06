@@ -20,6 +20,7 @@ import com.route.data.api.model.response.cart.ResponseCart
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
+import retrofit2.http.Headers
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
@@ -58,6 +59,7 @@ interface WebServices {
     ): SignUpResponse
 
     @GET("api/v1/wishlist")
+    @Headers("Cache-Control: no-cache")
     suspend fun getWishlist():WishListResponse
 
     @POST("api/v1/wishlist")
@@ -69,6 +71,7 @@ interface WebServices {
     ): BaseResponse<List<String>?>
 
     @GET("api/v1/cart")
+    @Headers("Cache-Control: no-cache")
     suspend fun getCart(): ResponseCart<ProductsItemCartDto>
 
     @POST("api/v1/cart")
